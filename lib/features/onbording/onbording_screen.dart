@@ -27,9 +27,9 @@ class OnbordingScreen extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 230.h,
+            height: 330.h,
           ),
-         ButtonOnbording()
+          ButtonOnbording()
         ],
       )),
     );
