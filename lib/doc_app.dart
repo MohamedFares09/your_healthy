@@ -6,7 +6,7 @@ import 'package:your_health/features/login/ui/widget/login_screen.dart';
 import 'package:your_health/features/onbording/onbording_screen.dart';
 
 class DocApp extends StatelessWidget {
-  DocApp({
+ const DocApp({
     super.key,
   });
 

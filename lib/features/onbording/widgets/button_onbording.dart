@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:your_health/core/theming/color.dart';
 
 class ButtonOnbording extends StatelessWidget {
   const ButtonOnbording({super.key});
@@ -9,7 +10,7 @@ class ButtonOnbording extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {},
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.blue,
+        backgroundColor: ColorManegaer.kprimarycolor,
         foregroundColor: Colors.white,
         minimumSize: Size(200.w, 50.h),
       ),
