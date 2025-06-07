@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:your_health/core/theming/color.dart';
-import 'package:your_health/features/login/ui/widget/login_screen.dart';
+import 'package:your_health/features/login/ui/login_screen.dart';
 import 'package:your_health/features/onbording/onbording_screen.dart';
 
 class DocApp extends StatelessWidget {

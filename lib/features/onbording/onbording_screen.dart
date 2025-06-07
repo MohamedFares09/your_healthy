@@ -10,27 +10,30 @@ class OnbordingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Column(
-        children: [
-          SizedBox(
-            height: 30.h,
-          ),
-          DocLogoAndName(),
-          SizedBox(
-            height: 30.h,
-          ),
-          Text(
-            ".احجز، تابع، واطمئن… كل شيء في مكان واحد\n صحتك، التطبيق الذي يهتم بك وبمن تحب",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16.sp,
+          child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 30.h,
             ),
-          ),
-          SizedBox(
-            height: 330.h,
-          ),
-          ButtonOnbording()
-        ],
+            DocLogoAndName(),
+            SizedBox(
+              height: 30.h,
+            ),
+            Text(
+              ".احجز، تابع، واطمئن… كل شيء في مكان واحد\n صحتك، التطبيق الذي يهتم بك وبمن تحب",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16.sp,
+              ),
+            ),
+            SizedBox(
+              height: 330.h,
+            ),
+            ButtonOnbording()
+          ],
+        ),
       )),
     );
   }

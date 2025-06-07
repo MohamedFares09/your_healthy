@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/theming/color.dart';
+import 'package:your_health/features/login/ui/login_screen.dart';
 
 class ButtonOnbording extends StatelessWidget {
   const ButtonOnbording({super.key});
@@ -8,11 +9,16 @@ class ButtonOnbording extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushReplacementNamed(context, LoginScreen.id);
+      },
       style: ElevatedButton.styleFrom(
         backgroundColor: ColorManegaer.kprimarycolor,
         foregroundColor: Colors.white,
-        minimumSize: Size(200.w, 50.h),
+        minimumSize: Size(double.infinity.w, 50.h),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.0),
+        ),
       ),
       child: Text(
         "ابدأ الآن",
