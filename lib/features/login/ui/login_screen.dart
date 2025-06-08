@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/core/widgets/app_text_form_field.dart';
-import 'package:your_health/features/login/widget/button_login_screen.dart';
+import 'package:your_health/core/widgets/custom_button.dart';
+import 'package:your_health/features/sign_up/ui/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -28,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  SizedBox(height: 50.h),
+                  SizedBox(height: 30.h),
                   Center(
                     child: Text("تسجيل الدخول",
                         textAlign: TextAlign.left,
@@ -57,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     icon: Icon(Icons.lock_outline),
                     prefixIcon: GestureDetector(
                       onTap: () {
-                        setState(() { 
+                        setState(() {
                           isObscureText = !isObscureText;
                         });
                       },
@@ -78,12 +79,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: ColorManegaer.kprimarycolor,
                       )),
                   SizedBox(height: 20.h),
-                  ButtonLoginScreen(),
+                  CustomButton(
+                    namebutton: "تسجيل الدخول",
+                  ),
                   SizedBox(height: 20.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacementNamed(
+                              context, SignUpScreen.id);
+                        },
                         child: Text(
                           "انشاء حساب جديد",
                           textDirection: TextDirection.rtl,

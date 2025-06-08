@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/theming/color.dart';
 
 class AppTextFormField extends StatelessWidget {
-  AppTextFormField({super.key, required this.hintText, required this.icon , this.isObscureText , this.prefixIcon  });
+  AppTextFormField({super.key, required this.hintText, required this.icon , this.isObscureText , this.prefixIcon,   });
   final String hintText;
   Widget icon;
   Widget ? prefixIcon;

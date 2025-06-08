@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/features/login/ui/login_screen.dart';
 import 'package:your_health/features/onbording/onbording_screen.dart';
+import 'package:your_health/features/sign_up/ui/sign_up_screen.dart';
 
 class DocApp extends StatelessWidget {
  const DocApp({
@@ -23,7 +24,8 @@ class DocApp extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white),
         routes: {
           OnbordingScreen.id: (context) => OnbordingScreen(),
-          LoginScreen.id: (context) => LoginScreen()
+          LoginScreen.id: (context) => LoginScreen() ,
+          SignUpScreen.id: (context) => SignUpScreen(),
         },
         initialRoute: OnbordingScreen.id,
       ),
