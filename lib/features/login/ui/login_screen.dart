@@ -14,6 +14,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isObscureText = true;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Padding(
             padding: EdgeInsets.all(30.w),
             child: Form(
+              key: formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -55,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     icon: Icon(Icons.lock_outline),
                     prefixIcon: GestureDetector(
                       onTap: () {
-                        setState(() {
+                        setState(() { 
                           isObscureText = !isObscureText;
                         });
                       },
