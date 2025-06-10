@@ -3,27 +3,37 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/theming/color.dart';
 
 class AppTextFormField extends StatelessWidget {
-  AppTextFormField({super.key, required this.hintText, required this.icon , this.isObscureText , this.prefixIcon,   });
+  AppTextFormField({
+    super.key,
+    required this.hintText,
+    required this.icon,
+    this.isObscureText,
+    this.prefixIcon,
+    this.controller,
+  });
   final String hintText;
   Widget icon;
-  Widget ? prefixIcon;
-  final bool ? isObscureText ;
+  Widget? prefixIcon;
+  final bool? isObscureText;
+  TextEditingController? controller;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.h),
       child: TextFormField(
-        textDirection: TextDirection.rtl,
-        textAlign: TextAlign.right,  
-        decoration: InputDecoration(
-          isDense : true,
+        controller:controller ,
+          textDirection: TextDirection.rtl,
+          textAlign: TextAlign.right,
+          decoration: InputDecoration(
+            isDense: true,
             contentPadding:
                 EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
             hintTextDirection: TextDirection.rtl,
             hintText: hintText,
             hintStyle: TextStyle(),
             suffixIcon: icon,
-            prefixIcon: prefixIcon, 
+            prefixIcon: prefixIcon,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16.0),
               borderSide: BorderSide(
@@ -45,10 +55,8 @@ class AppTextFormField extends StatelessWidget {
                 width: 1.0,
               ),
             ),
-            
-            ),
-            obscureText: isObscureText ?? false
-      ),
+          ),
+          obscureText: isObscureText ?? false),
     );
   }
 }

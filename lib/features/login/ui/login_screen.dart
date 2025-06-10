@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/core/widgets/app_text_form_field.dart';
 import 'package:your_health/core/widgets/custom_button.dart';
+import 'package:your_health/features/Home/screen/home_screen.dart';
+import 'package:your_health/features/cubit/user_cubit.dart';
+import 'package:your_health/features/cubit/user_state.dart';
 import 'package:your_health/features/sign_up/ui/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -16,6 +20,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool isObscureText = true;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  UserCubit userCubit = UserCubit();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,11 +55,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(height: 30.h),
                   AppTextFormField(
+                    controller: userCubit.emilLogin,
                     hintText: "البريد الالكتروني",
                     icon: Icon(Icons.email_outlined),
                   ),
                   AppTextFormField(
                     hintText: "كلمة المرور",
+                    controller: userCubit.passwordLogin,
                     icon: Icon(Icons.lock_outline),
                     prefixIcon: GestureDetector(
                       onTap: () {
@@ -79,8 +86,35 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: ColorManegaer.kprimarycolor,
                       )),
                   SizedBox(height: 20.h),
-                  CustomButton(
-                    namebutton: "تسجيل الدخول",
+                  BlocConsumer<UserCubit, UserState>(
+                    listener: (context, state) {
+                      if (state is SuccessLogin) {
+                         ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("تم التسجيل بنجاح "),
+                          ),
+                        );
+                        Navigator.pushReplacementNamed(context, HomeScreen.id);
+                      } else if (state is FailuerLogin) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("يوجد خطا ف الوقت الحالي"),
+                          ),
+                        );
+                      }
+                    },
+                    builder: (context, state) {
+                      return state is LodingLogin
+                          ? Center(child: CircularProgressIndicator())
+                          : CustomButton(
+                              onPressed: () {
+                                context.read<UserCubit>().login(
+                                    userCubit.emilLogin.text,
+                                    userCubit.passwordLogin.text);
+                              },
+                              namebutton: "تسجيل الدخول",
+                            );
+                    },
                   ),
                   SizedBox(height: 20.h),
                   Row(

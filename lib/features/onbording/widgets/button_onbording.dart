@@ -8,21 +8,24 @@ class ButtonOnbording extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        Navigator.pushReplacementNamed(context, LoginScreen.id);
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: ColorManegaer.kprimarycolor,
-        foregroundColor: Colors.white,
-        minimumSize: Size(double.infinity.w, 50.h),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24.0),
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, LoginScreen.id);
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: ColorManegaer.kprimarycolor,
+          foregroundColor: Colors.white,
+          minimumSize: Size(double.infinity.w, 50.h),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
+          ),
         ),
-      ),
-      child: Text(
-        "ابدأ الآن",
-        style: TextStyle(fontSize: 18.sp),
+        child: Text(
+          "ابدأ الآن",
+          style: TextStyle(fontSize: 18.sp),
+        ),
       ),
     );
   }

@@ -16,6 +16,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   @override
   bool isObscureText = true;
+  bool isObscureTextConfirm = true;
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -69,18 +70,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   prefixIcon: GestureDetector(
                     onTap: () {
                       setState(() {
-                        isObscureText = !isObscureText;
+                        isObscureTextConfirm = !isObscureTextConfirm;
                       });
                     },
                     child: Icon(
-                      isObscureText
+                      isObscureTextConfirm
                           ? Icons.visibility_off_outlined
                           : Icons.visibility_outlined,
                     ),
                   ),
-                  isObscureText: isObscureText,
+                  isObscureText: isObscureTextConfirm,
                 ),
                 CustomButton(
+                  onPressed: (){},
                   namebutton: "إنشاء حساب",
                 ),
                 Row(
