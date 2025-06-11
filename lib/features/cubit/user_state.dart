@@ -7,6 +7,6 @@ final class LodingLogin extends UserState {}
 final class SuccessLogin extends UserState {}
 
 final class FailuerLogin extends UserState {
-  String errorMessage;
-  FailuerLogin(this.errorMessage);
+ late String errorMessage;
+  FailuerLogin({required this.errorMessage});
 }

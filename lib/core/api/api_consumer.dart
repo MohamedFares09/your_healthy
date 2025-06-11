@@ -3,31 +3,26 @@ abstract class ApiConsumer {
     String path, {
     Object? data,
     Map<String, dynamic>? quereParameters,
-
   });
 
   Future<dynamic> post(
-     String path, {
+    String path, {
     Object? data,
     Map<String, dynamic>? quereParameters,
-bool isFormData = false ,
-  }
-  );
+    bool isFormData = false,
+  });
 
   Future<dynamic> patch(
-     String path, {
+    String path, {
     Object? data,
     Map<String, dynamic>? quereParameters,
-    
-    bool isFormData = false ,
-  }
-  );
+    bool isFormData = false,
+  });
 
   Future<dynamic> delete(
-     String path, {
+    String path, {
     Object? data,
     Map<String, dynamic>? quereParameters,
-    bool isFormData  = false,
-  }
-  );
+    bool isFormData = false,
+  });
 }

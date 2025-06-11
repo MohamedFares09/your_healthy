@@ -1,6 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:your_health/core/api/api_consumer.dart';
+import 'package:your_health/core/api/dio_consumer.dart';
 import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/core/widgets/app_text_form_field.dart';
 import 'package:your_health/core/widgets/custom_button.dart';
@@ -20,7 +23,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool isObscureText = true;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  UserCubit userCubit = UserCubit();
+  UserCubit userCubit = UserCubit(DioConsumer(dio: Dio()));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   BlocConsumer<UserCubit, UserState>(
                     listener: (context, state) {
                       if (state is SuccessLogin) {
-                         ScaffoldMessenger.of(context).showSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text("تم التسجيل بنجاح "),
                           ),
@@ -108,9 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ? Center(child: CircularProgressIndicator())
                           : CustomButton(
                               onPressed: () {
-                                context.read<UserCubit>().login(
-                                    userCubit.emilLogin.text,
-                                    userCubit.passwordLogin.text);
+                                context.read<UserCubit>().login();
                               },
                               namebutton: "تسجيل الدخول",
                             );

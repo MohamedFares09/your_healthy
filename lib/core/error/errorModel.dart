@@ -1,14 +1,14 @@
 class Errormodel {
   String? message;
-  Data? data;
+  Map<String, dynamic>? data;
   Errormodel({required this.message, this.data});
-  Errormodel.fromJson(Map<String, dynamic> json) {
-    message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+  Errormodel.fromJson(String json) {
+    message = json;
+    // data = json['data'];
   }
 }
 
-class Data { 
+class Data {
   int? status;
 
   Data({this.status});
