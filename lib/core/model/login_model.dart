@@ -1,8 +1,8 @@
 class LoginModel {
-  final String token;
-  final String user_email;
-  final String user_nicename;
-  final String user_display_name;
+  final String ?token;
+  final String ?user_email;
+  final String ?user_nicename;
+  final String ?user_display_name;
 
   LoginModel({
     required this.token,

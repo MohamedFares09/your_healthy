@@ -3,6 +3,7 @@ class Errormodel {
   Map<String, dynamic>? data;
   Errormodel({required this.message, this.data});
   Errormodel.fromJson(Map<String, dynamic> json) {
+    if(json['message'] == null) return;
     message = json['message'];
     data = json['data'];
   }

@@ -5,5 +5,5 @@ class EndPoints {
 }
 
 class ApiKey {
-  static String Message = "message";
+  
 }

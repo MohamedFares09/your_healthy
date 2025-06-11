@@ -11,7 +11,7 @@ class ServerException implements Exception {
 void HandelDioException(DioException e) {
   // log('error is: (${e.response!.data.runtimeType}) $e');
   e.response!.data; // error
-  log(e.message.toString());
+  
   switch (e.type) {
     case DioExceptionType.connectionTimeout:
       // TODO: Handle this case.
@@ -39,7 +39,7 @@ void HandelDioException(DioException e) {
       switch (e.response?.statusCode) {
         case 400:
           throw ServerException(
-              errormodel: Errormodel.fromJson(e.response!.data)); 
+              errormodel: Errormodel.fromString("هذا الايميل مستخدم من قبل")); 
         case 401:
           throw ServerException(
               errormodel: Errormodel.fromJson(e.response!.data));

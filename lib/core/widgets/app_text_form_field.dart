@@ -10,18 +10,21 @@ class AppTextFormField extends StatelessWidget {
     this.isObscureText,
     this.prefixIcon,
     this.controller,
+    this.validator
   });
   final String hintText;
   Widget icon;
   Widget? prefixIcon;
   final bool? isObscureText;
   TextEditingController? controller;
+  String? Function(String?) ? validator;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.h),
       child: TextFormField(
+        validator: validator ,
         controller:controller ,
           textDirection: TextDirection.rtl,
           textAlign: TextAlign.right,

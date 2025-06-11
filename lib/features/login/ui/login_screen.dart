@@ -27,6 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     UserCubit userCubit = context.read<UserCubit>();
+    
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -58,11 +59,23 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(height: 30.h),
+                  
                   AppTextFormField(
                     controller: userCubit.emilLogin,
                     hintText: "البريد الالكتروني",
                     icon: Icon(Icons.email_outlined),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'يرجى إدخال البريد الإلكتروني';
+                      }
+                      // التحقق من صحة البريد الإلكتروني
+                      if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                        return 'يرجى إدخال بريد إلكتروني صحيح';
+                      }
+                      return null;
+                    },
                   ),
+                  
                   AppTextFormField(
                     hintText: "كلمة المرور",
                     controller: userCubit.passwordLogin,
@@ -80,22 +93,38 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     isObscureText: isObscureText,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'يرجى إدخال كلمة المرور';
+                      }
+                      return null;
+                    },
                   ),
+                  
                   SizedBox(height: 20.h),
-                  Text("هل نسيبت كلمة المرور؟",
-                      textDirection: TextDirection.rtl,
-                      style: TextStyle(
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w500,
-                        color: ColorManegaer.kprimarycolor,
-                      )),
+                  
+                  GestureDetector(
+                    onTap: () {
+                      // هنا يمكن إضافة وظيفة استعادة كلمة المرور
+                    },
+                    child: Text("هل نسيت كلمة المرور؟",
+                        textDirection: TextDirection.rtl,
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: ColorManegaer.kprimarycolor,
+                        )),
+                  ),
+                  
                   SizedBox(height: 20.h),
+                  
                   BlocConsumer<UserCubit, UserState>(
                     listener: (context, state) {
                       if (state is SuccessLogin) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text("تم التسجيل بنجاح "),
+                            content: Text("تم تسجيل الدخول بنجاح"),
+                            backgroundColor: Colors.green,
                           ),
                         );
                         Navigator.pushReplacementNamed(context, HomeScreen.id);
@@ -103,6 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(state.errorMessage),
+                            backgroundColor: Colors.red,
                           ),
                         );
                       }
@@ -112,13 +142,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           ? Center(child: CircularProgressIndicator())
                           : CustomButton(
                               onPressed: () {
-                                context.read<UserCubit>().login();
+                                // التحقق من صحة البيانات قبل الإرسال
+                                if (formKey.currentState!.validate()) {
+                                  context.read<UserCubit>().login();
+                                }
                               },
                               namebutton: "تسجيل الدخول",
                             );
                     },
                   ),
+                  
                   SizedBox(height: 20.h),
+                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
