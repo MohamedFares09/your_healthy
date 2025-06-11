@@ -15,11 +15,13 @@ class UserCubit extends Cubit<UserState> {
   login() async {
     try {
       emit(LodingLogin());
-      final response = await api.post(EndPoints.login , data: {'username': emilLogin.text, 'password': passwordLogin.text});
+      final response = await api.post(EndPoints.login,
+          data: {'username': emilLogin.text, 'password': passwordLogin.text});
       user = LoginModel.fromJson(response);
-      
+
       // final decodedToken =   JwtDecoder.decode(user!.token);
-      // emit(SuccessLogin());
+      log( "response" + response.toString());
+      emit(SuccessLogin());
     } on ServerException catch (e) {
       emit(FailuerLogin(errorMessage: e.errormodel.message ?? 'Unknown error'));
     }

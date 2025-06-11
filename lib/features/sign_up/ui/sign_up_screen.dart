@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/core/widgets/app_text_form_field.dart';
 import 'package:your_health/core/widgets/custom_button.dart';
 import 'package:your_health/features/login/ui/login_screen.dart';
@@ -32,7 +33,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     style: TextStyle(
                       fontSize: 24.sp,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue,
+                      color: ColorManegaer.kprimarycolor,
                     ),
                   ),
                 ),
@@ -82,7 +83,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   isObscureText: isObscureTextConfirm,
                 ),
                 CustomButton(
-                  onPressed: (){},
+                  onPressed: () {},
                   namebutton: "إنشاء حساب",
                 ),
                 Row(

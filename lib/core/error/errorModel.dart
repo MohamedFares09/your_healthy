@@ -2,10 +2,11 @@ class Errormodel {
   String? message;
   Map<String, dynamic>? data;
   Errormodel({required this.message, this.data});
-  Errormodel.fromJson(String json) {
-    message = json;
-    // data = json['data'];
+  Errormodel.fromJson(Map<String, dynamic> json) {
+    message = json['message'];
+    data = json['data'];
   }
+  Errormodel.fromString(String this.message);
 }
 
 class Data {

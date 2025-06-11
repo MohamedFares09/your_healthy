@@ -9,7 +9,7 @@ class ServerException implements Exception {
 }
 
 void HandelDioException(DioException e) {
-  log('error is: (${e.response!.data.runtimeType}) $e');
+  // log('error is: (${e.response!.data.runtimeType}) $e');
   e.response!.data; // error
   log(e.message.toString());
   switch (e.type) {
@@ -39,13 +39,13 @@ void HandelDioException(DioException e) {
       switch (e.response?.statusCode) {
         case 400:
           throw ServerException(
-              errormodel: Errormodel.fromJson(e.response!.data));
+              errormodel: Errormodel.fromJson(e.response!.data)); 
         case 401:
           throw ServerException(
               errormodel: Errormodel.fromJson(e.response!.data));
         case 403:
           throw ServerException(
-              errormodel: Errormodel.fromJson(e.response!.data));
+              errormodel: Errormodel.fromString("الايميل او كلمه المرور غير صحيحه"));
         case 404:
           throw ServerException(
               errormodel: Errormodel.fromJson(e.response!.data));

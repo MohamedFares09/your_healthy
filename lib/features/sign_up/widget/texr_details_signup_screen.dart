@@ -10,7 +10,7 @@ class TexrDetailsSignupScreen extends StatelessWidget {
       textAlign: TextAlign.right,
       style: TextStyle(
         fontSize: 16,
-        color: Colors.grey,
+        color: Colors.grey[800],
       ),
     );
   }

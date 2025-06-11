@@ -23,9 +23,10 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool isObscureText = true;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  UserCubit userCubit = UserCubit(DioConsumer(dio: Dio()));
+
   @override
   Widget build(BuildContext context) {
+    UserCubit userCubit = context.read<UserCubit>();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -101,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       } else if (state is FailuerLogin) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text("يوجد خطا ف الوقت الحالي"),
+                            content: Text(state.errorMessage),
                           ),
                         );
                       }
@@ -131,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           textDirection: TextDirection.rtl,
                           style: TextStyle(
                             fontSize: 14.sp,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.bold,
                             color: ColorManegaer.kprimarycolor,
                           ),
                         ),
@@ -139,6 +140,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(width: 5.w),
                       Text(
                         "ليس لديك حساب؟",
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                        ),
                       ),
                     ],
                   ),

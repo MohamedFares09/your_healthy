@@ -1,8 +1,6 @@
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:your_health/core/api/api_consumer.dart';
-import 'package:your_health/core/api/api_interceptors.dart';
 import 'package:your_health/core/api/end_points.dart';
 import 'package:your_health/core/error/exceptions.dart';
 
@@ -11,7 +9,8 @@ class DioConsumer extends ApiConsumer {
 
   DioConsumer({required this.dio}) {
     dio.options.baseUrl = EndPoints.baseURL;
-    dio.interceptors.add(ApiInterceptors());
+
+    // dio.interceptors.add(ApiInterceptors());
     // dio.interceptors.add(LogInterceptor(
     //     request: true,
     //     requestBody: true,
