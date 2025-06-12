@@ -24,7 +24,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    UserCubit userCubit = context.read<UserCubit>(); // الحصول على UserCubit
+    UserCubit userCubit = context.read<UserCubit>(); 
     
     return Scaffold(
       body: SafeArea(

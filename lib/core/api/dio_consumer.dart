@@ -29,7 +29,7 @@ class DioConsumer extends ApiConsumer {
           queryParameters: quereParameters);
       return response.data;
     } on DioException catch (e) {
-      HandelDioException(e);
+      handelDioException(e);
     }
   }
 
@@ -41,7 +41,7 @@ class DioConsumer extends ApiConsumer {
           await dio.get(path, data: data, queryParameters: quereParameters);
       return response.data;
     } on DioException catch (e) {
-      HandelDioException(e);
+      handelDioException(e);
     }
   }
 
@@ -56,7 +56,7 @@ class DioConsumer extends ApiConsumer {
           queryParameters: quereParameters);
       return response.data;
     } on DioException catch (e) {
-      HandelDioException(e);
+      handelDioException(e);
     }
   }
 
@@ -72,7 +72,7 @@ class DioConsumer extends ApiConsumer {
       return response.data;
     } on DioException catch (e) {
       log('error is: (${e.runtimeType}) $e');
-      HandelDioException(e);
+      handelDioException(e);
     }
   }
 }

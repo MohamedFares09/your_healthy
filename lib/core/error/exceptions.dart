@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:your_health/core/error/errorModel.dart';
-import 'dart:developer';
+import 'package:your_health/core/error/error_model.dart';
+
 
 class ServerException implements Exception {
   final Errormodel errormodel;
@@ -8,32 +8,32 @@ class ServerException implements Exception {
   ServerException({required this.errormodel});
 }
 
-void HandelDioException(DioException e) {
+void handelDioException(DioException e) {
   // log('error is: (${e.response!.data.runtimeType}) $e');
   e.response!.data; // error
   
   switch (e.type) {
     case DioExceptionType.connectionTimeout:
-      // TODO: Handle this case.
+      
       throw ServerException(errormodel: Errormodel.fromJson(e.response!.data));
     case DioExceptionType.sendTimeout:
-      // TODO: Handle this case.
+      
       throw ServerException(errormodel: Errormodel.fromJson(e.response!.data));
     case DioExceptionType.receiveTimeout:
-      // TODO: Handle this case.
+    
       throw ServerException(errormodel: Errormodel.fromJson(e.response!.data));
     case DioExceptionType.badCertificate:
-      // TODO: Handle this case.
+    
       throw ServerException(errormodel: Errormodel.fromJson(e.response!.data));
 
     case DioExceptionType.cancel:
-      // TODO: Handle this case.
+      
       throw ServerException(errormodel: Errormodel.fromJson(e.response!.data));
     case DioExceptionType.connectionError:
-      // TODO: Handle this case.
+      
       throw ServerException(errormodel: Errormodel.fromJson(e.response!.data));
     case DioExceptionType.unknown:
-      // TODO: Handle this case.
+      
       throw ServerException(errormodel: Errormodel.fromJson(e.response!.data));
     case DioExceptionType.badResponse:
       switch (e.response?.statusCode) {

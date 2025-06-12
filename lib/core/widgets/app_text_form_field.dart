@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/theming/color.dart';
 
+// ignore: must_be_immutable
 class AppTextFormField extends StatelessWidget {
   AppTextFormField({
     super.key,

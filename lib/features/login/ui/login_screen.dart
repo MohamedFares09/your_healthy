@@ -1,9 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:your_health/core/api/api_consumer.dart';
-import 'package:your_health/core/api/dio_consumer.dart';
 import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/core/widgets/app_text_form_field.dart';
 import 'package:your_health/core/widgets/custom_button.dart';
@@ -105,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   
                   GestureDetector(
                     onTap: () {
-                      // هنا يمكن إضافة وظيفة استعادة كلمة المرور
+                   
                     },
                     child: Text("هل نسيت كلمة المرور؟",
                         textDirection: TextDirection.rtl,
@@ -142,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ? Center(child: CircularProgressIndicator())
                           : CustomButton(
                               onPressed: () {
-                                // التحقق من صحة البيانات قبل الإرسال
+                                
                                 if (formKey.currentState!.validate()) {
                                   context.read<UserCubit>().login();
                                 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_health/core/theming/color.dart';
 
+// ignore: must_be_immutable
 class CustomButton extends StatelessWidget {
    CustomButton({super.key, required this.namebutton , required this.onPressed});
   final String namebutton;

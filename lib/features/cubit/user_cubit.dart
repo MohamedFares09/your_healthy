@@ -6,7 +6,6 @@ import 'package:your_health/core/api/api_consumer.dart';
 import 'package:your_health/core/api/end_points.dart';
 import 'package:your_health/core/error/exceptions.dart';
 import 'package:your_health/core/model/login_model.dart';
-import 'package:your_health/core/model/sign_up_model.dart';
 import 'package:your_health/features/cubit/user_state.dart';
 
 class UserCubit extends Cubit<UserState> {
@@ -22,9 +21,9 @@ class UserCubit extends Cubit<UserState> {
       // التحقق من أن البيانات ليست فارغة
       if (emilLogin.text.isEmpty || passwordLogin.text.isEmpty) {
         emit(FailuerLogin(errorMessage: 'يرجى إدخال جميع البيانات'));
+        
         return;
       }
-
       final response = await api.post(
         EndPoints.login,
         data: {
@@ -154,7 +153,7 @@ class UserCubit extends Cubit<UserState> {
   Future<void> logout() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.clear(); // مسح جميع البيانات المحفوظة
+      await prefs.clear(); 
       user = null;
       _clearAllFields();
     } catch (e) {
