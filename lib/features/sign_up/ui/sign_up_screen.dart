@@ -150,7 +150,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       } else if (state is FailuerSignUp) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text("${state.errorMessage}"),
+                            content: Text(state.errorMessage),
                             backgroundColor: Colors.red,
                           )
                         );
