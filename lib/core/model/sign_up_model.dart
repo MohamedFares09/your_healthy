@@ -1,16 +1,16 @@
 class SignUpModel {
   bool success;
-  int user_id; 
+  int userId; 
 
   SignUpModel({
     required this.success,
-    required this.user_id,
+    required this.userId,
   });
 
   factory SignUpModel.fromJson(Map<String, dynamic> json) {
     return SignUpModel(
       success: json['success'],
-      user_id: json['user_id'],
+      userId: json['user_id'],
     );
   }
 }

@@ -1,21 +1,21 @@
 class LoginModel {
   final String ?token;
-  final String ?user_email;
-  final String ?user_nicename;
-  final String ?user_display_name;
+  final String ?userEmail;
+  final String ?userNicename;
+  final String ?userDisplayName;
 
   LoginModel({
     required this.token,
-    required this.user_email,
-    required this.user_nicename,
-    required this.user_display_name,
+    required this.userEmail,
+    required this.userNicename,
+    required this.userDisplayName,
   });
   factory LoginModel.fromJson(Map<String, dynamic> json) {
     return LoginModel(
         token: json["token"],
-        user_email: json["user_email"],
-        user_nicename: json["user_nicename"],
-        user_display_name: json["user_nicename"],
+        userEmail: json["user_email"],
+        userNicename: json["user_nicename"],
+        userDisplayName: json["user_nicename"],
         );
   }
 }

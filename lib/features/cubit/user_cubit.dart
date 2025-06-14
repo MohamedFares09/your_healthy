@@ -126,14 +126,14 @@ class UserCubit extends Cubit<UserState> {
   Future<void> _saveUserData(LoginModel user) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      if (user.user_email != null) {
-        await prefs.setString('user_email', user.user_email!);
+      if (user.userEmail != null) {
+        await prefs.setString('user_email', user.userEmail!);
       }
-      if (user.user_nicename != null) {
-        await prefs.setString('user_name', user.user_nicename!);
+      if (user.userNicename != null) {
+        await prefs.setString('user_name', user.userNicename!);
       }
-      if (user.user_display_name != null) {
-        await prefs.setString('user_display_name', user.user_display_name!);
+      if (user.userDisplayName != null) {
+        await prefs.setString('user_display_name', user.userDisplayName!);
       }
     } catch (e) {
       log('Error saving user data: $e');

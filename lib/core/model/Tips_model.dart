@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 class TipsModel {
   final String postImageUrl;
   final String postTitle;
