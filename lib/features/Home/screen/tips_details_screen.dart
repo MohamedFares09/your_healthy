@@ -1,18 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:your_health/core/model/Tips_model.dart';
-import 'package:your_health/core/theming/color.dart';
-import 'package:flutter_html/flutter_html.dart'; // عشان نعرض الـ HTML
 
 class TipsDetailsScreen extends StatelessWidget {
-  const TipsDetailsScreen({super.key});
-static String id = "tipsDetailsScreen";
+  const TipsDetailsScreen({super.key, required this.tipsModel});
+
+  final TipsModel tipsModel;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-
-        ],
+      appBar: AppBar(
+          // title: Text(
+          //   tipsModel.postTitle,
+          //   style: const TextStyle(fontSize: 18),
+          // ),
+          ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Align(
+                alignment: Alignment.centerRight,
+              child: Text(
+                tipsModel.postTitle,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+                textDirection: TextDirection.rtl,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Image.network(
+              tipsModel.postImageUrl,
+              height: 220,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+            const SizedBox(height: 12),
+            Text(
+              tipsModel.postContent,
+              style: const TextStyle(fontSize: 16, color: Color(0xff777777)),
+              textDirection: TextDirection.rtl,
+            ),
+          ],
+        ),
       ),
     );
   }

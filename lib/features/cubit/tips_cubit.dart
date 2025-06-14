@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:your_health/core/api/api_consumer.dart';
 import 'package:your_health/core/api/end_points.dart';

@@ -29,7 +29,7 @@ class DocApp extends StatelessWidget {
           LoginScreen.id: (context) => LoginScreen() ,
           SignUpScreen.id: (context) => SignUpScreen(),
           HomeScreen.id : (context)=>HomeScreen(),
-          TipsDetailsScreen.id : (context)=>TipsDetailsScreen()
+          // TipsDetailsScreen.id : (context)=>TipsDetailsScreen()
         },
         initialRoute: OnbordingScreen.id,
       ),
