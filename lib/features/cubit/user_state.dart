@@ -21,3 +21,5 @@ final class FailuerSignUp extends UserState {
   late String errorMessage;
   FailuerSignUp({required this.errorMessage});
 }
+
+

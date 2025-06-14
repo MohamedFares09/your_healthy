@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:your_health/core/theming/color.dart';
+import 'package:your_health/features/Home/widgets/Tips_widget_screen.dart';
 import 'package:your_health/features/Home/widgets/home_widet_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,11 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<Widget> pages = [
     HomeWidetScreen(),
-    Scaffold(
-      body: Center(
-        child: Text("setting"),
-      ),
-    ),
+   TipsWidgetScreen(),
     Scaffold(
       body: Center(
         child: Text("profile"),

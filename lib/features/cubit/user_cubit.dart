@@ -13,15 +13,16 @@ class UserCubit extends Cubit<UserState> {
   final ApiConsumer api;
   LoginModel? user;
 
+
+ 
+
+
   // تسجيل الدخول
   login() async {
     try {
       emit(LodingLogin());
-      
-      // التحقق من أن البيانات ليست فارغة
       if (emilLogin.text.isEmpty || passwordLogin.text.isEmpty) {
         emit(FailuerLogin(errorMessage: 'يرجى إدخال جميع البيانات'));
-        
         return;
       }
       final response = await api.post(
@@ -55,7 +56,7 @@ class UserCubit extends Cubit<UserState> {
     try {
       emit(LodingSignUp());
       
-      // التحقق من أن البيانات ليست فارغة
+      
       if (nameSignUp.text.isEmpty || 
           emilSignUp.text.isEmpty || 
           passwordSignUp.text.isEmpty || 
@@ -94,9 +95,8 @@ class UserCubit extends Cubit<UserState> {
           }
         }
         
-        emit(SuccessSignUp());
-        
-        // مسح البيانات بعد التسجيل الناجح
+        emit(SuccessSignUp(),);
+
         _clearSignUpFields();
       } else {
         emit(FailuerSignUp(errorMessage: 'فشل في التسجيل'));
@@ -109,6 +109,8 @@ class UserCubit extends Cubit<UserState> {
       log('Register error: $e');
     }
   }
+
+
 
   // حفظ الـ token
   Future<void> _saveToken(String token) async {
