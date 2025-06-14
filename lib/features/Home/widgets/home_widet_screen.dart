@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_health/core/theming/color.dart';
 
+// ignore: must_be_immutable
 class HomeWidetScreen extends StatelessWidget {
   HomeWidetScreen({super.key});
   List<String> nameCategories = [

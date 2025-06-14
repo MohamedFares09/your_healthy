@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/features/Home/screen/home_screen.dart';
+import 'package:your_health/features/Home/screen/tips_details_screen.dart';
 import 'package:your_health/features/login/ui/login_screen.dart';
 import 'package:your_health/features/onbording/onbording_screen.dart';
 import 'package:your_health/features/sign_up/ui/sign_up_screen.dart';
@@ -28,6 +29,7 @@ class DocApp extends StatelessWidget {
           LoginScreen.id: (context) => LoginScreen() ,
           SignUpScreen.id: (context) => SignUpScreen(),
           HomeScreen.id : (context)=>HomeScreen(),
+          TipsDetailsScreen.id : (context)=>TipsDetailsScreen()
         },
         initialRoute: OnbordingScreen.id,
       ),
