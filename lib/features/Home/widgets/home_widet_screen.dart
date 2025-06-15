@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:your_health/core/theming/color.dart';
+import 'package:your_health/features/Home/screen/doctor_details_screen.dart';
 
 // ignore: must_be_immutable
 class HomeWidetScreen extends StatelessWidget {
@@ -36,32 +37,39 @@ class HomeWidetScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 16),
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        width: 3, color: ColorManegaer.kprimarycolor),
-                    borderRadius: BorderRadius.circular(16)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      nameCategories[index],
-                      style: TextStyle(
-                          color: ColorManegaer.kprimarycolor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Image.asset(imageCategories[index]),
-                    SizedBox(
-                      width: 30,
-                    ),
-                  ],
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(
+                    context, DoctorDetailsScreen.id
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 3, color: ColorManegaer.kprimarycolor),
+                      borderRadius: BorderRadius.circular(16)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        nameCategories[index],
+                        style: TextStyle(
+                            color: ColorManegaer.kprimarycolor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
+                      SizedBox(
+                        width: 30,
+                      ),
+                      Image.asset(imageCategories[index]),
+                      SizedBox(
+                        width: 30,
+                      ),
+                    ],
+                  ),
+                  height: 70,
+                  width: 370,
                 ),
-                height: 70,
-                width: 370,
               ),
             );
           }),

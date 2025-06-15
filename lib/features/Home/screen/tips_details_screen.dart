@@ -10,10 +10,6 @@ class TipsDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          // title: Text(
-          //   tipsModel.postTitle,
-          //   style: const TextStyle(fontSize: 18),
-          // ),
           ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
