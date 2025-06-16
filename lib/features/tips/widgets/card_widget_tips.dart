@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:your_health/core/model/Tips_model.dart';
 import 'package:your_health/features/tips/screens/tips_details_screen.dart';
 
+
+
 class CardWidgetTips extends StatelessWidget {
   const CardWidgetTips({super.key, required this.tipsModel});
   final TipsModel tipsModel;

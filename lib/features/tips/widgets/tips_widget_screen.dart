@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:dio/dio.dart';
 import 'package:your_health/core/api/dio_consumer.dart';
-import 'package:your_health/features/Home/widgets/card_widget_tips.dart';
+import 'package:your_health/features/tips/widgets/card_widget_tips.dart';
 
 import 'package:your_health/features/cubit/tips_cubit.dart';
 import 'package:your_health/features/cubit/tips_state.dart';
