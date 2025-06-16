@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/api/dio_consumer.dart';
 import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/features/tips/widgets/tips_widget_screen.dart';
@@ -38,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
           centerTitle: true,
           title: Text(
             nameAppBar[currentIndex],
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white, fontSize: 13.sp),
           ),
           backgroundColor: ColorManegaer.kprimarycolor,
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategorySkeletonCard extends StatelessWidget {
   const CategorySkeletonCard({super.key});
@@ -8,8 +9,8 @@ class CategorySkeletonCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 70,
-        width: 370,
+        height: 70.h,
+        width: 370.w,
         decoration: BoxDecoration(
           border: Border.all(width: 3, color: Colors.grey[300]!),
           borderRadius: BorderRadius.circular(16),
@@ -21,8 +22,8 @@ class CategorySkeletonCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: Container(
-                width: 100,
-                height: 16,
+                width: 100.w,
+                height: 16.h,
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
                   borderRadius: BorderRadius.circular(4),
@@ -34,15 +35,15 @@ class CategorySkeletonCard extends StatelessWidget {
 
             // صورة وهمية
             Container(
-              height: 50,
-              width: 50,
+              height: 50.h,
+              width: 50.w,
               decoration: BoxDecoration(
                 color: Colors.grey[300],
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
 
-            const SizedBox(width: 16),
+             SizedBox(width: 16.w),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/model/Tips_model.dart';
 import 'package:your_health/features/tips/screens/tips_details_screen.dart';
 
@@ -43,8 +44,8 @@ class CardWidgetTips extends StatelessWidget {
               ),
               child: Image.network(
                 tipsModel.postImageUrl,
-                height: 200,
-                width: double.infinity,
+                height: 200.h,
+                width: double.infinity.w,
                 fit: BoxFit.cover,
               ),
             ),
@@ -62,13 +63,13 @@ class CardWidgetTips extends StatelessWidget {
                       textDirection: TextDirection.rtl,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 16,
+                      style:  TextStyle(
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 8),
+                   SizedBox(height: 8.h),
 
                   // الكاتب والتاريخ
                   Row(
@@ -78,16 +79,16 @@ class CardWidgetTips extends StatelessWidget {
                         child: Text(
                           tipsModel.authorName,
                           overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 14,
+                          style:  TextStyle(
+                            fontSize: 14.sp,
                             color: Colors.grey,
                           ),
                         ),
                       ),
                       Text(
                         tipsModel.postDate.split('T')[0],
-                        style: const TextStyle(
-                          fontSize: 13,
+                        style:  TextStyle(
+                          fontSize: 13.sp,
                           color: Colors.grey,
                         ),
                       ),
