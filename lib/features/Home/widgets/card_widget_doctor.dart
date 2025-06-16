@@ -3,7 +3,7 @@ import 'package:your_health/core/model/doctor_model.dart';
 import 'package:your_health/core/theming/color.dart';
 
 class CardWidgetDoctor extends StatelessWidget {
-  CardWidgetDoctor({super.key, required this.doctorModel});
+  const CardWidgetDoctor({super.key, required this.doctorModel});
   final DoctorModel doctorModel;
 
   @override
@@ -25,9 +25,8 @@ class CardWidgetDoctor extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end, // محاذاة النص لليمين
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            // اسم الطبيب مع الصورة
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -138,7 +137,15 @@ class CardWidgetDoctor extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  "${doctorModel.priceDoctor} جنيه",
+                  "جنيه",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey[800],
+                  ),
+                ),
+                Text(
+                  " ${doctorModel.priceDoctor}",
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,

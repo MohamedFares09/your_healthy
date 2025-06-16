@@ -1,78 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:your_health/core/theming/color.dart';
-import 'package:your_health/features/Home/screen/doctor_details_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:your_health/features/Home/widgets/category_card_widget.dart';
+import 'package:your_health/features/cubit/category_cubit.dart';
+import 'package:your_health/features/cubit/category_state.dart';
 
-// ignore: must_be_immutable
 class HomeWidetScreen extends StatelessWidget {
-  HomeWidetScreen({super.key});
-  List<String> nameCategories = [
-    "اسنان",
-    "باطنه",
-    "عيون",
-    "اطفال",
-    "اوعيه دمويه",
-    "جلديه",
-    "عظام",
-    "مسالك بوليه",
-    "نسا و توليد"
-  ];
-  List<String> imageCategories = [
-    "assets/images/DoctorCategories/Tooth.png",
-    "assets/images/DoctorCategories/Stomach.png",
-    "assets/images/DoctorCategories/Periods.png",
-    "assets/images/DoctorCategories/Leg.png",
-    "assets/images/DoctorCategories/Leather.png",
-    "assets/images/DoctorCategories/Eye.png",
-    "assets/images/DoctorCategories/Embryo.png",
-    "assets/images/DoctorCategories/Colon.png",
-    "assets/images/DoctorCategories/Baby Feet.png"
-  ];
-
+  const HomeWidetScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: ListView.builder(
-          itemCount: nameCategories.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 16),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context, DoctorDetailsScreen.id
-                  );
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          width: 3, color: ColorManegaer.kprimarycolor),
-                      borderRadius: BorderRadius.circular(16)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        nameCategories[index],
-                        style: TextStyle(
-                            color: ColorManegaer.kprimarycolor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      Image.asset(imageCategories[index]),
-                      SizedBox(
-                        width: 30,
-                      ),
-                    ],
-                  ),
-                  height: 70,
-                  width: 370,
-                ),
-              ),
-            );
-          }),
+    return BlocBuilder<CategoryCubit, CategoryState>(
+      builder: (context, state) {
+        if (state is LoadingCategory) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is SuccessCategory) {
+          return ListView.builder(
+            itemCount: state.categoryList.length,
+            itemBuilder: (context, index) {
+              return CategoryCardWidget(
+                categoetModel: state.categoryList[index],
+              );
+            },
+          );
+        } else if (state is FailureCategory) {
+          return Center(
+            child: Text(
+              state.errMessage,
+              style: const TextStyle(color: Colors.red),
+            ),
+          );
+        } else {
+          return const Center(child: Text("لا توجد بيانات"));
+        }
+      },
     );
   }
 }

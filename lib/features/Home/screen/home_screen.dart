@@ -1,7 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:your_health/core/api/dio_consumer.dart';
 import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/features/Home/widgets/Tips_widget_screen.dart';
 import 'package:your_health/features/Home/widgets/home_widet_screen.dart';
+import 'package:your_health/features/cubit/category_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<Widget> pages = [
     HomeWidetScreen(),
-   TipsWidgetScreen(),
+    TipsWidgetScreen(),
     Scaffold(
       body: Center(
         child: Text("profile"),
@@ -27,36 +31,39 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          nameAppBar[currentIndex],
-          style: TextStyle(color: Colors.white),
+    return BlocProvider(
+      create: (context) => CategoryCubit(DioConsumer(dio: Dio()))..getCategory(),
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            nameAppBar[currentIndex],
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: ColorManegaer.kprimarycolor,
         ),
-        backgroundColor: ColorManegaer.kprimarycolor,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: ColorManegaer.kprimarycolor,
-          selectedFontSize: 16,
-          selectedIconTheme: IconThemeData(size: 30),
-          currentIndex: currentIndex,
-          onTap: (value) {
-            setState(() {
-              currentIndex = value;
-            });
-          },
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home), label: "الصفحه الريسيه "),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.lightbulb), label: "النصايح"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person), label: "الصفحه الشخصيه "),
-          ]),
-      body: SafeArea(
-        child: Center(
-          child: pages[currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: ColorManegaer.kprimarycolor,
+            selectedFontSize: 16,
+            selectedIconTheme: IconThemeData(size: 30),
+            currentIndex: currentIndex,
+            onTap: (value) {
+              setState(() {
+                currentIndex = value;
+              });
+            },
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home), label: "الصفحه الريسيه "),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.lightbulb), label: "النصايح"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person), label: "الصفحه الشخصيه "),
+            ]),
+        body: SafeArea(
+          child: Center(
+            child: pages[currentIndex],
+          ),
         ),
       ),
     );

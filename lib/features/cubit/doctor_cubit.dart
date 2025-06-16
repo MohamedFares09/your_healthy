@@ -20,7 +20,8 @@ class DoctorCubit extends Cubit<DoctorState> {
       }
       if (isClosed) return;
       emit(SuccessDoctor(doctorList: doctorList));
-      log(data.toString());
+    
+
     } catch (e) {
       if (isClosed) return;
       log(e.toString());

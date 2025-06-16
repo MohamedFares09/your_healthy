@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 import 'package:your_health/core/model/doctor_model.dart';
 
 class DoctorState {}
