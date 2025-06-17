@@ -28,7 +28,7 @@ class CardWidgetDoctor extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // صورة الطبيب
                 ClipRRect(
@@ -45,33 +45,41 @@ class CardWidgetDoctor extends StatelessWidget {
                           width: 60,
                           height: 60,
                           color: Colors.grey[300],
-                          child: Icon(Icons.person, color: Colors.white),
+                          child: const Icon(Icons.person, color: Colors.white),
                         ),
                 ),
+                const SizedBox(width: 12),
                 // اسم الطبيب
-                Text(
-                  "دكتور ${doctorModel.nameDoctor}",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey[800],
+                Expanded(
+                  child: Text(
+                    "دكتور ${doctorModel.nameDoctor}",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[800],
+                    ),
+                    textAlign: TextAlign.right,
+                    softWrap: true,
                   ),
-                  textAlign: TextAlign.right,
                 ),
               ],
             ),
 
             const SizedBox(height: 12),
 
-            // التخصص الأول (أخصائي جراحة العظام والمفاصل)
+            // التخصص الأول
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  doctorModel.specialtyDoctor,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[600],
+                Expanded(
+                  child: Text(
+                    doctorModel.specialtyDoctor,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey[600],
+                    ),
+                    textAlign: TextAlign.right,
+                    softWrap: true,
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -85,18 +93,22 @@ class CardWidgetDoctor extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
 
-            // التخصص الثاني مع أيقونة
+            // التخصص الثاني
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  doctorModel.specializationDoctor,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey[700],
+                Expanded(
+                  child: Text(
+                    doctorModel.specializationDoctor,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey[700],
+                    ),
+                    textAlign: TextAlign.right,
+                    softWrap: true,
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -114,15 +126,19 @@ class CardWidgetDoctor extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            // العنوان مع أيقونة الموقع
+            // العنوان
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  doctorModel.addressDoctor,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[600],
+                Expanded(
+                  child: Text(
+                    doctorModel.addressDoctor,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey[600],
+                    ),
+                    textAlign: TextAlign.right,
+                    softWrap: true,
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -132,7 +148,7 @@ class CardWidgetDoctor extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            // سعر الكشف مع أيقونة الدولار
+            // سعر الكشف
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -167,15 +183,19 @@ class CardWidgetDoctor extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            // التخصص مرة أخرى مع أيقونة الطبيب
+            // التخصص مرة أخرى
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  doctorModel.specializationDoctor,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[600],
+                Expanded(
+                  child: Text(
+                    doctorModel.specializationDoctor,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey[600],
+                    ),
+                    textAlign: TextAlign.right,
+                    softWrap: true,
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -191,8 +211,7 @@ class CardWidgetDoctor extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      ColorManegaer.kprimarycolor, // لون أخضر كما في الصورة
+                  backgroundColor: ColorManegaer.kprimarycolor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -200,10 +219,10 @@ class CardWidgetDoctor extends StatelessWidget {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(Icons.calendar_today, color: Colors.white, size: 18),
-                    const SizedBox(width: 8),
-                    const Text(
+                    SizedBox(width: 8),
+                    Text(
                       "احجز استشارته",
                       style: TextStyle(
                         fontSize: 16,

@@ -9,29 +9,34 @@ import 'package:your_health/features/cubit/doctor_state.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class DoctorDetailsScreen extends StatelessWidget {
-  const DoctorDetailsScreen({super.key});
-  static String id = "doctordetailsscreen";
+  const DoctorDetailsScreen({super.key, required this.specializationId , required this.specializationTitle});
+
+  final int specializationId;
+  final String specializationTitle;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(specializationTitle),
+        centerTitle:  true,
+      ),
       body: BlocProvider(
-        create: (context) => DoctorCubit(DioConsumer(dio: Dio()))..getDoctor(),
+        create: (context) => DoctorCubit(DioConsumer(dio: Dio()))
+          ..getDoctor(specializationId: specializationId),
         child: BlocBuilder<DoctorCubit, DoctorState>(
           builder: (context, state) {
             if (state is LoadingDoctor) {
               return Skeletonizer(
                 enabled: true,
                 child: ListView.builder(
-                  itemCount: 5, 
+                  itemCount: 5,
                   itemBuilder: (context, index) {
                     return const DoctorSkeletonCard();
                   },
                 ),
               );
             } else if (state is SuccessDoctor) {
-              
               return ListView.builder(
                 itemCount: state.doctorList.length,
                 itemBuilder: (context, index) {

@@ -9,14 +9,7 @@ class DioConsumer extends ApiConsumer {
 
   DioConsumer({required this.dio}) {
     dio.options.baseUrl = EndPoints.baseURL;
-
-    // dio.interceptors.add(ApiInterceptors());
-    // dio.interceptors.add(LogInterceptor(
-    //     request: true,
-    //     requestBody: true,
-    //     responseBody: true,
-    //     requestHeader: true,
-    //     error: true));
+    
   }
   @override
   Future delete(String path,
@@ -71,7 +64,7 @@ class DioConsumer extends ApiConsumer {
           queryParameters: quereParameters);
       return response.data;
     } on DioException catch (e) {
-      log('error is: (${e.runtimeType}) $e');
+  
       handelDioException(e);
     }
   }
