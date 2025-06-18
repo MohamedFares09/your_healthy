@@ -22,10 +22,12 @@ class DoctorCubit extends Cubit<DoctorState> {
           if (specializationId != null) 'specialization': specializationId,
         },
       );
-
+      
       final List doctorList = response;
+      List<DoctorModel> s = doctorList.map((e) => DoctorModel.fromJson(e)).toList();
+      s.removeWhere((element) => element.id==-1);
       emit(SuccessDoctor(
-        doctorList: doctorList.map((e) => DoctorModel.fromJson(e)).toList(),
+        doctorList: s
       ));
     } catch (e, stackTrace) {
       log('Error loading doctors: $e', stackTrace: stackTrace);

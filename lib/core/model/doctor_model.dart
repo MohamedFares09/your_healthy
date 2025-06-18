@@ -1,4 +1,5 @@
 class DoctorModel {
+  final int id; 
   final String nameDoctor;
   final String? imageDocor;
   final String contentDctor;
@@ -8,6 +9,7 @@ class DoctorModel {
   final String priceDoctor;
 
   DoctorModel({
+    required this.id,
     required this.nameDoctor,
     this.imageDocor,
     required this.contentDctor,
@@ -18,7 +20,9 @@ class DoctorModel {
   });
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) {
+    int id = "${json['acf']['amelia_doctor_id']}".isEmpty ? -1 :json['acf']['amelia_doctor_id'] ;
     return DoctorModel(
+      id:id,
       nameDoctor: json['title']['rendered'],
       contentDctor: json['content']['rendered'],
       imageDocor: json['_embedded']?['wp:featuredmedia']?[0]?['media_details']?['sizes']?['thumbnail']?['source_url']
