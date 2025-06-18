@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_health/core/model/doctor_model.dart';
 import 'package:your_health/core/theming/color.dart';
+import 'package:your_health/features/Home/screen/doctor_booking_screen.dart';
 
 class CardWidgetDoctor extends StatelessWidget {
   const CardWidgetDoctor({super.key, required this.doctorModel});
@@ -209,7 +210,13 @@ class CardWidgetDoctor extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) {
+                    return DoctorBookingScreen(
+                      id: doctorModel.id,
+                    );
+                  }));
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorManegaer.kprimarycolor,
                   shape: RoundedRectangleBorder(
