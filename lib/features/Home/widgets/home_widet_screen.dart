@@ -29,6 +29,7 @@ class HomeWidetScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return CategoryCardWidget(
                 categoetModel: state.categoryList[index],
+               
               );
             },
           );

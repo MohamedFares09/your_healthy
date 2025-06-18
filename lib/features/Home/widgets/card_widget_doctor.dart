@@ -214,6 +214,7 @@ class CardWidgetDoctor extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (_) {
                     return DoctorBookingScreen(
                       id: doctorModel.id,
+                      doctorModel: doctorModel,
                     );
                   }));
                 },

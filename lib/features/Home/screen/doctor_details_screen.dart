@@ -9,17 +9,24 @@ import 'package:your_health/features/cubit/doctor_state.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class DoctorDetailsScreen extends StatelessWidget {
-  const DoctorDetailsScreen({super.key, required this.specializationId , required this.specializationTitle});
+  const DoctorDetailsScreen(
+      {super.key,
+      required this.specializationId,
+      required this.specializationTitle,  
+     
+      
+    });
 
   final int specializationId;
   final String specializationTitle;
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(specializationTitle),
-        centerTitle:  true,
+        centerTitle: true,
       ),
       body: BlocProvider(
         create: (context) => DoctorCubit(DioConsumer(dio: Dio()))

@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/model/categoet_model.dart';
+import 'package:your_health/core/model/doctor_model.dart';
 import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/features/Home/screen/doctor_details_screen.dart';
 
-
 class CategoryCardWidget extends StatelessWidget {
-  const CategoryCardWidget({super.key, required this.categoetModel});
+  const CategoryCardWidget({super.key, required this.categoetModel ,  });
 
   final CategoetModel categoetModel;
+
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        DoctorModel doctorModel;
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (_) => DoctorDetailsScreen(
-              specializationId: categoetModel.specializationId, 
+              specializationId: categoetModel.specializationId,
               specializationTitle: categoetModel.name,
             ),
           ),

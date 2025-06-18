@@ -6,4 +6,5 @@ class EndPoints {
   static String advice = "wp/v2/posts?_embed";
   static String doctor = "wp/v2/doctor?_embed";
   static String category = "wp/v2/specialization";
+  static String services(int id) => "custom/v1/doctor-services/$id";
 }

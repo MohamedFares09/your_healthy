@@ -20,9 +20,9 @@ class DoctorModel {
   });
 
   factory DoctorModel.fromJson(Map<String, dynamic> json) {
-    int id = "${json['acf']['amelia_doctor_id']}".isEmpty ? -1 :json['acf']['amelia_doctor_id'] ;
+
     return DoctorModel(
-      id:id,
+      id:json['acf']['amelia_doctor_id'],
       nameDoctor: json['title']['rendered'],
       contentDctor: json['content']['rendered'],
       imageDocor: json['_embedded']?['wp:featuredmedia']?[0]?['media_details']?['sizes']?['thumbnail']?['source_url']
