@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:your_health/core/model/doctor_model.dart';
+import 'package:your_health/core/model/services_model.dart';
+import 'package:your_health/core/widgets/custom_dailog_widget.dart';
 
-class DoctorBookingCardWidget extends StatelessWidget {
+class DoctorBookingCardWidget extends StatefulWidget {
   const DoctorBookingCardWidget({
     super.key,
     required this.doctorModel,
-    required this.id
+    required this.id,
+    required this.servicelist,
   });
+
   final int id;
   final DoctorModel doctorModel;
+  final List<ServicesModel> servicelist;
+
+  @override
+  State<DoctorBookingCardWidget> createState() =>
+      _DoctorBookingCardWidgetState();
+}
+
+class _DoctorBookingCardWidgetState extends State<DoctorBookingCardWidget> {
+  ServicesModel? selectedService;
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +50,10 @@ class DoctorBookingCardWidget extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: doctorModel.imageDocor != null &&
-                          doctorModel.imageDocor!.isNotEmpty
+                  child: widget.doctorModel.imageDocor != null &&
+                          widget.doctorModel.imageDocor!.isNotEmpty
                       ? Image.network(
-                          doctorModel.imageDocor!,
+                          widget.doctorModel.imageDocor!,
                           width: 60,
                           height: 60,
                           fit: BoxFit.cover,
@@ -55,7 +68,7 @@ class DoctorBookingCardWidget extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    "دكتور ${doctorModel.nameDoctor}",
+                    "دكتور ${widget.doctorModel.nameDoctor}",
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -73,7 +86,7 @@ class DoctorBookingCardWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    doctorModel.specialtyDoctor,
+                    widget.doctorModel.specialtyDoctor,
                     textAlign: TextAlign.right,
                     style: const TextStyle(fontSize: 14),
                   ),
@@ -90,7 +103,7 @@ class DoctorBookingCardWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    doctorModel.specializationDoctor,
+                    widget.doctorModel.specializationDoctor,
                     textAlign: TextAlign.right,
                     style: const TextStyle(fontSize: 14),
                   ),
@@ -107,7 +120,7 @@ class DoctorBookingCardWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    doctorModel.addressDoctor,
+                    widget.doctorModel.addressDoctor,
                     textAlign: TextAlign.right,
                     style: const TextStyle(fontSize: 14),
                   ),
@@ -123,13 +136,74 @@ class DoctorBookingCardWidget extends StatelessWidget {
               children: [
                 Text("جنيه",
                     style: const TextStyle(fontWeight: FontWeight.bold)),
-                Text(" ${doctorModel.priceDoctor}",
+                Text(" ${widget.doctorModel.priceDoctor}",
                     style: const TextStyle(fontWeight: FontWeight.bold)),
                 const SizedBox(width: 8),
                 const Text("سعر الكشف:"),
                 const SizedBox(width: 4),
                 const Icon(Icons.attach_money, size: 16),
               ],
+            ),
+
+            const SizedBox(height: 12),
+
+            // الخدمات (Radio buttons لاختيار خدمة واحدة فقط)
+            const Text("اختر خدمة:",
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.end,
+              children: widget.servicelist.map((service) {
+                return RadioListTile<ServicesModel>(
+                  controlAffinity: ListTileControlAffinity.trailing,
+                  title: Text(
+                    service.name,
+                    textAlign: TextAlign.right,
+                  ),
+                  value: service,
+                  groupValue: selectedService,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedService = value;
+                    });
+                  },
+                );
+              }).toList(),
+            ),
+
+            const SizedBox(height: 12),
+
+            // زر الاستمرار
+            ElevatedButton(
+              onPressed: selectedService == null
+                  ? () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text("يجب اختيار الخدمه اولا")),
+                        );
+                    }
+                  : () async {
+                      DateTime date = DateTime.now();
+                      DateTime? dateTime = await showDatePicker(
+                          context: context,
+                          initialDate: date,
+                          firstDate: DateTime(2025),
+                          lastDate: DateTime(2026));
+                      if (dateTime == null) {
+                        return;
+                      } else if (dateTime.day < date.day) {
+                        CustomDialogWidget.show(
+                          context: context,
+                          message: 'لا يمكن اخيار يوم سابق',
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text("تم اختيار اليوم بنجاح")),
+                        );
+                      }
+                    },
+              child: const Text("استمرار"),
             ),
           ],
         ),

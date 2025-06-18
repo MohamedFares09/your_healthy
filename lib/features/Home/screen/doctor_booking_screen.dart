@@ -7,7 +7,6 @@ import 'package:your_health/features/Home/widgets/doctor_booking_card_widget.dar
 import 'package:your_health/features/cubit/services_cubit.dart';
 import 'package:your_health/features/cubit/services_state.dart';
 
-
 class DoctorBookingScreen extends StatelessWidget {
   const DoctorBookingScreen({
     super.key,
@@ -37,46 +36,13 @@ class DoctorBookingScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     // كارت معلومات الدكتور
-                    DoctorBookingCardWidget(doctorModel: doctorModel,id: id,),
+                    DoctorBookingCardWidget(
+                      doctorModel: doctorModel,
+                      id: id, servicelist: state.listServices,
+                     
+                    ),
 
                     const SizedBox(height: 16),
-
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            "الخدمات المتوفرة:",
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey[800],
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          ...state.listServices.map((service) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      service.name,
-                                      style: const TextStyle(fontSize: 14),
-                                      textAlign: TextAlign.right,
-                                    ),
-                                  ),
-                                  const Icon(Icons.medical_services,
-                                      color: Colors.blue, size: 18),
-                                ],
-                              ),
-                            );
-                          }).toList()
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               );
