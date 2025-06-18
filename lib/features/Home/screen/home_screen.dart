@@ -7,7 +7,6 @@ import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/features/tips/widgets/tips_widget_screen.dart';
 import 'package:your_health/features/Home/widgets/home_widet_screen.dart';
 import 'package:your_health/features/cubit/category_cubit.dart';
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
   static String id = "homescreen";
