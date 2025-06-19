@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:your_health/core/model/doctor_model.dart';
 import 'package:your_health/core/model/services_model.dart';

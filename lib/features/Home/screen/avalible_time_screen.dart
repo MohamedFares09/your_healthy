@@ -35,7 +35,11 @@ class AvailableTimesScreen extends StatelessWidget {
             if (state is AvalibleTimeLoadingState) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is AvalibleTimeSuccessState) {
-              return AvailableTimesWidget(listTime: state.listTime);
+              return AvailableTimesWidget(
+                listTime: state.listTime,
+                doctorId: doctorId,
+                serviceId: int.parse(serviceId),
+              );
             } else if (state is AvalibleTimeFailuerState) {
               return Center(child: Text("حدث خطأ: ${state.errMessage}"));
             }

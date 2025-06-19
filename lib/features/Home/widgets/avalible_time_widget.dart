@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:your_health/core/model/avalible_time_model.dart';
+import 'package:your_health/core/model/doctor_model.dart';
 import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/core/widgets/custom_button.dart';
+import 'package:your_health/features/confarm/screens/confarm_screen.dart';
 
 class AvailableTimesWidget extends StatefulWidget {
   final List<AvalibleTimeModel> listTime;
-  const AvailableTimesWidget({super.key, required this.listTime});
+  final int doctorId;
+  final int serviceId;
+  const AvailableTimesWidget({super.key, required this.listTime, required this.doctorId, required this.serviceId});
 
   @override
   State<AvailableTimesWidget> createState() => _AvailableTimesWidgetState();
@@ -88,9 +92,15 @@ class _AvailableTimesWidgetState extends State<AvailableTimesWidget> {
                   );
                   return;
                 }
-                // قم بإرسال الوقت المختار هنا مثلاً
                 final selectedTime = widget.listTime[selectedIndex!];
-                print("تم اختيار: ${selectedTime.start} - ${selectedTime.end}");
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ConfarmScreen(
+                    doctorId: widget.doctorId,
+                    serviceId: widget.serviceId,
+                    start: selectedTime.start,
+                    end: selectedTime.end,
+                  );
+                }));
               },
             ),
           ],

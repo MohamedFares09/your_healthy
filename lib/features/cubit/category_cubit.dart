@@ -21,7 +21,7 @@ class CategoryCubit extends Cubit<CategoryState> {
       }
       if (isClosed) return;
       emit(SuccessCategory(categoryList: categoryList));
-    } on Exception catch (e) {
+    } on Exception {
       if (isClosed) return;
       emit(FailureCategory(errMessage: "يوجد مشكله في الوقت الحالي "));
     }

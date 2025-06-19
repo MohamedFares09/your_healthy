@@ -13,4 +13,5 @@ class EndPoints {
     required String date,
   }) =>
       "custom/v1/doctor-day-slots?doctor_id=$doctorId&service_id=$serviceId&date=$date";
+  static String confarm = "custom/v1/book-appointment";
 }
