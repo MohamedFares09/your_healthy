@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:your_health/core/model/avalible_time_model.dart';
-import 'package:your_health/core/model/doctor_model.dart';
 import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/core/widgets/custom_button.dart';
 import 'package:your_health/features/confarm/screens/confarm_screen.dart';

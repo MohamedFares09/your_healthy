@@ -80,15 +80,33 @@ class _ConfarmScreenState extends State<ConfarmScreen> {
                         controller: _phoneController,
                         hintText: 'رقم الهاتف',
                         icon: const Icon(Icons.phone),
-                        validator: (value) =>
-                            value!.isEmpty ? 'ادخل رقم الهاتف' : null,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'ادخل رقم الهاتف';
+                          }
+                          final phoneRegex =
+                              RegExp(r'^(010|011|012|015)[0-9]{8}$');
+                          if (!phoneRegex.hasMatch(value)) {
+                            return 'رقم الهاتف غير صحيح';
+                          }
+                          return null;
+                        },
                       ),
                       AppTextFormField(
                         controller: _emailController,
                         hintText: 'البريد الالكتروني',
                         icon: const Icon(Icons.email),
-                        validator: (value) =>
-                            value!.isEmpty ? 'ادخل البريد الالكتروني' : null,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'ادخل البريد الالكتروني';
+                          }
+                          final emailRegex =
+                              RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                          if (!emailRegex.hasMatch(value)) {
+                            return 'البريد الالكتروني غير صالح';
+                          }
+                          return null;
+                        },
                       ),
                       const SizedBox(height: 16),
                       CustomButton(
