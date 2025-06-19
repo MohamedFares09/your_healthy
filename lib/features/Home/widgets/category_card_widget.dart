@@ -15,7 +15,7 @@ class CategoryCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        DoctorModel doctorModel;
+       
         Navigator.push(
           context,
           MaterialPageRoute(

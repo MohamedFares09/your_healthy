@@ -7,4 +7,10 @@ class EndPoints {
   static String doctor = "wp/v2/doctor?_embed";
   static String category = "wp/v2/specialization";
   static String services(int id) => "custom/v1/doctor-services/$id";
+  static String doctorDaySlots({
+    required int doctorId,
+    required int serviceId,
+    required String date,
+  }) =>
+      "custom/v1/doctor-day-slots?doctor_id=$doctorId&service_id=$serviceId&date=$date";
 }

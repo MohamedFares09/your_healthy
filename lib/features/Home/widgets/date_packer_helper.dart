@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:your_health/core/widgets/custom_dailog_widget.dart';
-
 
 class DatePickerHelper {
   static Future<void> pickDate({
@@ -18,20 +18,19 @@ class DatePickerHelper {
 
     if (selectedDate == null) {
       return; // المستخدم لغى الاختيار
-    } else if (selectedDate.isBefore(
-        DateTime(now.year, now.month, now.day))) {
-      // تحقق أن اليوم المحدد سابق
+    } else if (selectedDate.isBefore(DateTime(now.year, now.month, now.day))) {
       CustomDialogWidget.show(
         context: context,
         message: 'لا يمكن اختيار يوم سابق',
       );
     } else {
-      // يوم صحيح
+      String formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
+
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("تم اختيار اليوم بنجاح")),
+        SnackBar(content: Text("تم اختيار اليوم: $formattedDate")),
       );
 
-      onDateSelected(selectedDate);
+      onDateSelected(selectedDate); // يمكنك تمرير formattedDate لو عدلت نوع المتغير
     }
   }
 }

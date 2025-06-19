@@ -1,7 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:your_health/core/model/doctor_model.dart';
 import 'package:your_health/core/model/services_model.dart';
 import 'package:your_health/core/widgets/custom_dailog_widget.dart';
+import 'package:your_health/features/Home/screen/avalible_time_screen.dart';
+import 'package:your_health/features/Home/widgets/date_packer_helper.dart';
 
 class DoctorBookingCardWidget extends StatefulWidget {
   const DoctorBookingCardWidget({
@@ -174,37 +177,39 @@ class _DoctorBookingCardWidgetState extends State<DoctorBookingCardWidget> {
             const SizedBox(height: 12),
 
             // زر الاستمرار
-            ElevatedButton(
-              onPressed: selectedService == null
-                  ? () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text("يجب اختيار الخدمه اولا")),
-                        );
-                    }
-                  : () async {
-                      DateTime date = DateTime.now();
-                      DateTime? dateTime = await showDatePicker(
-                          context: context,
-                          initialDate: date,
-                          firstDate: DateTime(2025),
-                          lastDate: DateTime(2026));
-                      if (dateTime == null) {
-                        return;
-                      } else if (dateTime.day < date.day) {
-                        CustomDialogWidget.show(
-                          context: context,
-                          message: 'لا يمكن اخيار يوم سابق',
-                        );
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text("تم اختيار اليوم بنجاح")),
-                        );
-                      }
-                    },
-              child: const Text("استمرار"),
-            ),
+ElevatedButton(
+  onPressed: selectedService == null
+      ? () {
+          CustomDialogWidget.show(
+            context: context,
+            message: "يجب اختيار الخدمه اولا",
+          );
+        }
+      : () async {
+          await DatePickerHelper.pickDate(
+            context: context,
+            onDateSelected: (DateTime selectedDate) {
+              // صيغة التاريخ المطلوبة yyyy-MM-dd
+              final String formattedDate =
+                  "${selectedDate.year}-${selectedDate.month.toString().padLeft(2, '0')}-${selectedDate.day.toString().padLeft(2, '0')}";
+
+              // بعد اختيار التاريخ ننتقل لصفحة عرض المواعيد
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => AvailableTimesScreen(
+                    date: formattedDate,
+                    doctorId: widget.id, // أو widget.doctorModel.doctorId إذا عندك الحقل في الموديل
+                    serviceId: selectedService!.serviceId,
+                  ),
+                ),
+              );
+            },
+          );
+        },
+  child: const Text("استمرار"),
+),
+
           ],
         ),
       ),

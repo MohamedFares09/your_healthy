@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/theming/color.dart';
 
 // ignore: must_be_immutable
 class CustomButton extends StatelessWidget {
-   CustomButton({super.key, required this.namebutton , required this.onPressed});
+  CustomButton({super.key, required this.namebutton, required this.onPressed});
   final String namebutton;
   void Function()? onPressed;
   @override
@@ -11,7 +12,7 @@ class CustomButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20.0),
       child: ElevatedButton(
-        onPressed: onPressed ,
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: ColorManegaer.kprimarycolor,
           foregroundColor: Colors.white,
@@ -21,9 +22,12 @@ class CustomButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(16.0),
           ),
         ),
-        child: Text(
-          namebutton,
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        child: Padding(
+          padding: EdgeInsets.only(top: 10.sp, bottom: 10.sp),
+          child: Text(
+            namebutton,
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     );
