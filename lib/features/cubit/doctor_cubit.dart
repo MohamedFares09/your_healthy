@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:your_health/core/api/api_consumer.dart';
+import 'package:your_health/core/api/end_points.dart';
 
 import 'package:your_health/core/model/doctor_model.dart';
 import 'package:your_health/features/cubit/doctor_state.dart';
@@ -16,19 +17,19 @@ class DoctorCubit extends Cubit<DoctorState> {
 
     try {
       final response = await api.get(
-        'https://dev-booking-system-website.pantheonsite.io/wp-json/wp/v2/doctor',
+        EndPoints.doctor,
+        
         quereParameters: {
-          '_embed': '',
+          
           if (specializationId != null) 'specialization': specializationId,
         },
       );
-      
+
       final List doctorList = response;
-      List<DoctorModel> s = doctorList.map((e) => DoctorModel.fromJson(e)).toList();
-      s.removeWhere((element) => element.id==-1);
-      emit(SuccessDoctor(
-        doctorList: s
-      ));
+      List<DoctorModel> listDoctor =
+          doctorList.map((e) => DoctorModel.fromJson(e)).toList();
+      // s.removeWhere((element) => element.id == -1);
+      emit(SuccessDoctor(doctorList: listDoctor));
     } catch (e, stackTrace) {
       log('Error loading doctors: $e', stackTrace: stackTrace);
       emit(FailureDoctor(errMessage: 'فشل تحميل الأطباء'));

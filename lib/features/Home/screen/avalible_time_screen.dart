@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/api/dio_consumer.dart';
+import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/features/Home/widgets/avalible_time_widget.dart';
 
 import 'package:your_health/features/cubit/avalible_time_cubit.dart';
@@ -41,7 +43,14 @@ class AvailableTimesScreen extends StatelessWidget {
                 serviceId: int.parse(serviceId),
               );
             } else if (state is AvalibleTimeFailuerState) {
-              return Center(child: Text("حدث خطأ: ${state.errMessage}"));
+              return Center(
+                  child: Text(
+                state.errMessage,
+                style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                    color: ColorManegaer.kprimarycolor),
+              ));
             }
             return const SizedBox.shrink();
           },

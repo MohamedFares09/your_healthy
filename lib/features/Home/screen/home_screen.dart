@@ -4,9 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/api/dio_consumer.dart';
 import 'package:your_health/core/theming/color.dart';
+import 'package:your_health/features/profile/widgets/profile_screen_widget.dart';
 import 'package:your_health/features/tips/widgets/tips_widget_screen.dart';
 import 'package:your_health/features/Home/widgets/home_widet_screen.dart';
 import 'package:your_health/features/cubit/category_cubit.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
   static String id = "homescreen";
@@ -19,20 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
   List<String> nameAppBar = ["التخصصات", "النصايح", "الصفحه الشخصيه "];
 
-  List<Widget> pages = [
-    HomeWidetScreen(),
-    TipsWidgetScreen(),
-    Scaffold(
-      body: Center(
-        child: Text("profile"),
-      ),
-    )
-  ];
+  List<Widget> pages = [HomeWidetScreen(), TipsWidgetScreen(), ProfileScreen()];
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CategoryCubit(DioConsumer(dio: Dio()))..getCategory(),
+      create: (context) =>
+          CategoryCubit(DioConsumer(dio: Dio()))..getCategory(),
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomDialogWidget {
   static Future<void> show({
@@ -21,7 +22,7 @@ class CustomDialogWidget {
             content: Text(
               message,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 16.sp,
               ),
             ),
             actions: [

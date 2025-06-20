@@ -11,7 +11,7 @@ class ServicesCubit extends Cubit<ServicesState> {
     emit(LoadingServicesState());
     try {
       final response = await api.get(EndPoints.services(doctorId));
-      
+
       final List list = response as List;
       final services = list.map((e) => ServicesModel.fromJson(e)).toList();
       emit(SuccessServicesState(services));

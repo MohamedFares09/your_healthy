@@ -26,7 +26,7 @@ class CustomButton extends StatelessWidget {
           padding: EdgeInsets.only(top: 10.sp, bottom: 10.sp),
           child: Text(
             namebutton,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
           ),
         ),
       ),

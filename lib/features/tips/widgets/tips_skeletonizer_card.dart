@@ -14,7 +14,7 @@ class TipsSkeletonCard extends StatelessWidget {
           // العنوان الرئيسي (الصورة أو المحتوى الرئيسي)
           Container(
             width: double.infinity,
-            height: 230,
+            height: 230.h,
             decoration: BoxDecoration(
               color: Colors.grey[300],
               borderRadius: BorderRadius.circular(12),

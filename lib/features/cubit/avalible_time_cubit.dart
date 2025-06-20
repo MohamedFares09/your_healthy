@@ -20,13 +20,15 @@ class AvalibleTimeCubit extends Cubit<AvalibleTimeState> {
         "custom/v1/doctor-day-slots?doctor_id=$doctorId&service_id=$serviceId&date=$date",
       );
 
-      final List<AvalibleTimeModel> timeList = (response['available_slots'] as List)
-          .map((e) => AvalibleTimeModel.fromJson(e))
-          .toList();
+      final List<AvalibleTimeModel> timeList =
+          (response['available_slots'] as List)
+              .map((e) => AvalibleTimeModel.fromJson(e))
+              .toList();
 
       emit(AvalibleTimeSuccessState(listTime: timeList));
     } catch (e) {
-      emit(AvalibleTimeFailuerState(errMessage: e.toString()));
+      emit(AvalibleTimeFailuerState(
+          errMessage: ' لا يوجد مواعيد متاح في اليوم الحالي'));
     }
   }
 }

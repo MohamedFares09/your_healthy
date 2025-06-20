@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/model/Tips_model.dart';
 
 class TipsDetailsScreen extends StatelessWidget {
@@ -20,14 +21,14 @@ class TipsDetailsScreen extends StatelessWidget {
                 alignment: Alignment.centerRight,
               child: Text(
                 tipsModel.postTitle,
-                style: const TextStyle(
-                  fontSize: 20,
+                style:  TextStyle(
+                  fontSize: 20.sp,
                   fontWeight: FontWeight.bold,
                 ),
                 textDirection: TextDirection.rtl,
               ),
             ),
-            const SizedBox(height: 20),
+             SizedBox(height: 20.h),
             Image.network(
               tipsModel.postImageUrl,
               height: 220,

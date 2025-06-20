@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/model/doctor_model.dart';
 import 'package:your_health/core/model/services_model.dart';
 import 'package:your_health/core/widgets/custom_dailog_widget.dart';
@@ -56,23 +57,23 @@ class _DoctorBookingCardWidgetState extends State<DoctorBookingCardWidget> {
                           widget.doctorModel.imageDocor!.isNotEmpty
                       ? Image.network(
                           widget.doctorModel.imageDocor!,
-                          width: 60,
-                          height: 60,
+                          width: 60.w,
+                          height: 60.h,
                           fit: BoxFit.cover,
                         )
                       : Container(
-                          width: 60,
-                          height: 60,
+                          width: 60.w,
+                          height: 60.h,
                           color: Colors.grey[300],
                           child: const Icon(Icons.person, color: Colors.white),
                         ),
                 ),
-                const SizedBox(width: 12),
+                 SizedBox(width: 12.w),
                 Expanded(
                   child: Text(
                     "دكتور ${widget.doctorModel.nameDoctor}",
-                    style: const TextStyle(
-                      fontSize: 18,
+                    style:  TextStyle(
+                      fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.right,
@@ -80,7 +81,7 @@ class _DoctorBookingCardWidgetState extends State<DoctorBookingCardWidget> {
                 ),
               ],
             ),
-            const SizedBox(height: 12),
+             SizedBox(height: 12.h),
 
             // التخصص الأساسي
             Row(
@@ -90,14 +91,14 @@ class _DoctorBookingCardWidgetState extends State<DoctorBookingCardWidget> {
                   child: Text(
                     widget.doctorModel.specialtyDoctor,
                     textAlign: TextAlign.right,
-                    style: const TextStyle(fontSize: 14),
+                    style:  TextStyle(fontSize: 14.sp),
                   ),
                 ),
-                const SizedBox(width: 8),
-                const Text(": التخصص", style: TextStyle(fontSize: 14)),
+                 SizedBox(width: 8.w),
+                 Text(": التخصص", style: TextStyle(fontSize: 14.sp)),
               ],
             ),
-            const SizedBox(height: 8),
+             SizedBox(height: 8.h),
 
             // التخصص الفرعي
             Row(
@@ -107,14 +108,14 @@ class _DoctorBookingCardWidgetState extends State<DoctorBookingCardWidget> {
                   child: Text(
                     widget.doctorModel.specializationDoctor,
                     textAlign: TextAlign.right,
-                    style: const TextStyle(fontSize: 14),
+                    style:  TextStyle(fontSize: 14.sp),
                   ),
                 ),
-                const SizedBox(width: 8),
-                const Icon(Icons.medical_services, size: 16),
+                 SizedBox(width: 8.w),
+                 Icon(Icons.medical_services, size: 16.sp),
               ],
             ),
-            const SizedBox(height: 8),
+             SizedBox(height: 8.h),
 
             // العنوان
             Row(
@@ -124,13 +125,13 @@ class _DoctorBookingCardWidgetState extends State<DoctorBookingCardWidget> {
                   child: Text(
                     widget.doctorModel.addressDoctor,
                     textAlign: TextAlign.right,
-                    style: const TextStyle(fontSize: 14),
+                    style:  TextStyle(fontSize: 14.sp),
                   ),
                 ),
-                const Icon(Icons.location_on, size: 16),
+                 Icon(Icons.location_on, size: 16.sp),
               ],
             ),
-            const SizedBox(height: 8),
+             SizedBox(height: 8.h),
 
             // السعر
             Row(
@@ -147,7 +148,7 @@ class _DoctorBookingCardWidgetState extends State<DoctorBookingCardWidget> {
               ],
             ),
 
-            const SizedBox(height: 12),
+             SizedBox(height: 12.h),
 
             // الخدمات (Radio buttons لاختيار خدمة واحدة فقط)
             const Text("اختر خدمة:",
@@ -173,7 +174,7 @@ class _DoctorBookingCardWidgetState extends State<DoctorBookingCardWidget> {
               }).toList(),
             ),
 
-            const SizedBox(height: 12),
+             SizedBox(height: 12.h),
 
             // زر الاستمرار
 ElevatedButton(

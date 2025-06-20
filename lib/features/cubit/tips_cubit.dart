@@ -14,7 +14,7 @@ class TipsCubit extends Cubit<TipsState> {
     if (isClosed) return;
     emit(LoadingTips());
     try {
-     final data = await apiConsumer.get(EndPoints.advice);
+      final data = await apiConsumer.get(EndPoints.advice);
 
       List<TipsModel> tipsList = [];
 

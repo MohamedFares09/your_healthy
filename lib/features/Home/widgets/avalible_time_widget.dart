@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:your_health/core/model/avalible_time_model.dart';
 import 'package:your_health/core/theming/color.dart';
@@ -43,8 +44,8 @@ class _AvailableTimesWidgetState extends State<AvailableTimesWidget> {
                     final isSelected = selectedIndex == index;
 
                     return SizedBox(
-                      width: 180,
-                      height: 45,
+                      width: 180.w,
+                      height: 45.h,
                       child: ChoiceChip(
                         label: Center(
                           child: Text(
@@ -58,7 +59,7 @@ class _AvailableTimesWidgetState extends State<AvailableTimesWidget> {
                         labelStyle: TextStyle(
                           color: isSelected ? Colors.white : Colors.black,
                           fontWeight: FontWeight.bold,
-                          fontSize: 15,
+                          fontSize: 15.sp,
                         ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),

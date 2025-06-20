@@ -12,12 +12,10 @@ class CategoryCubit extends Cubit<CategoryState> {
     if (isClosed) return;
     emit(LoadingCategory());
     try {
-      final data = await api.get(EndPoints.category , );
+      final data = await api.get(EndPoints.category);
       List<CategoetModel> categoryList = [];
       for (var category in data) {
-       
         categoryList.add(CategoetModel.fromJson(category));
-        
       }
       if (isClosed) return;
       emit(SuccessCategory(categoryList: categoryList));

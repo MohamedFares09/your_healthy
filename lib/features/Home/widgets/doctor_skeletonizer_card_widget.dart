@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DoctorSkeletonCard extends StatelessWidget {
   const DoctorSkeletonCard({super.key});
@@ -30,8 +31,8 @@ class DoctorSkeletonCard extends StatelessWidget {
               children: [
                 // صورة الطبيب
                 Container(
-                  width: 60,
-                  height: 60,
+                  width: 60.w,
+                  height: 60.h,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(8),
@@ -39,8 +40,8 @@ class DoctorSkeletonCard extends StatelessWidget {
                 ),
                 // اسم الطبيب
                 Container(
-                  width: 120,
-                  height: 20,
+                  width: 120.w,
+                  height: 20.h,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(4),
@@ -49,24 +50,24 @@ class DoctorSkeletonCard extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 12),
+             SizedBox(height: 12.h),
 
             // التخصص الأول
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  width: 150,
-                  height: 16,
+                  width: 150.w,
+                  height: 16.h,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
-                const SizedBox(width: 8),
+                 SizedBox(width: 8.w),
                 Container(
-                  width: 60,
-                  height: 16,
+                  width: 60.w,
+                  height: 16.h,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(4),
@@ -75,33 +76,33 @@ class DoctorSkeletonCard extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 16),
+             SizedBox(height: 16.h),
 
             // التخصص الثاني مع أيقونة
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  width: 100,
-                  height: 16,
+                  width: 100.w,
+                  height: 16.h,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
-                const SizedBox(width: 8),
+                 SizedBox(width: 8.w),
                 Container(
-                  width: 50,
-                  height: 16,
+                  width: 50.w,
+                  height: 16.h,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
-                const SizedBox(width: 4),
+                 SizedBox(width: 4.w),
                 Container(
-                  width: 16,
-                  height: 16,
+                  width: 16.w,
+                  height: 16.h,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(4),
@@ -110,15 +111,15 @@ class DoctorSkeletonCard extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 12),
+             SizedBox(height: 12.h),
 
          
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  width: 140,
-                  height: 16,
+                  width: 140.w,
+                  height: 16.h,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(4),
@@ -126,8 +127,8 @@ class DoctorSkeletonCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Container(
-                  width: 16,
-                  height: 16,
+                  width: 16.w,
+                  height: 16.h,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(4),
@@ -136,33 +137,33 @@ class DoctorSkeletonCard extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 12),
+             SizedBox(height: 12.h),
 
            
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  width: 80,
-                  height: 16,
+                  width: 80.w,
+                  height: 16.h,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
-                const SizedBox(width: 8),
+                 SizedBox(width: 8.w),
                 Container(
-                  width: 70,
-                  height: 16,
+                  width: 70.w,
+                  height: 16.h,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),
-                const SizedBox(width: 4),
+                 SizedBox(width: 4.w),
                 Container(
-                  width: 16,
-                  height: 16,
+                  width: 16.w,
+                  height: 16.h,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(4),
@@ -171,15 +172,15 @@ class DoctorSkeletonCard extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 12),
+             SizedBox(height: 12.h),
 
             
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
-                  width: 110,
-                  height: 16,
+                  width: 110.w,
+                  height: 16.h,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(4),
@@ -187,8 +188,8 @@ class DoctorSkeletonCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Container(
-                  width: 16,
-                  height: 16,
+                  width: 16.w,
+                  height: 160.h,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(4),
@@ -197,12 +198,12 @@ class DoctorSkeletonCard extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 20),
+             SizedBox(height: 20.h),
 
             // زر الحجز
             Container(
-              width: double.infinity,
-              height: 48,
+              width: double.infinity.w,
+              height: 480.h,
               decoration: BoxDecoration(
                 color: Colors.grey[300],
                 borderRadius: BorderRadius.circular(8),

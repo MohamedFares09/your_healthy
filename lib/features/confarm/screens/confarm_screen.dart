@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/widgets/app_text_form_field.dart';
 import 'package:your_health/core/widgets/custom_button.dart';
 import 'package:your_health/features/cubit/confarm_cubit.dart';
@@ -7,6 +8,8 @@ import 'package:your_health/features/cubit/confarm_state.dart';
 import 'package:your_health/core/model/confarm_model.dart';
 import 'package:dio/dio.dart';
 import 'package:your_health/core/api/dio_consumer.dart';
+
+import '../../Home/screen/home_screen.dart';
 
 class ConfarmScreen extends StatefulWidget {
   final int doctorId;
@@ -47,7 +50,7 @@ class _ConfarmScreenState extends State<ConfarmScreen> {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("تم الحجز بنجاح")),
               );
-              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
             } else if (state is ConfarmError) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.message)),
@@ -108,7 +111,7 @@ class _ConfarmScreenState extends State<ConfarmScreen> {
                           return null;
                         },
                       ),
-                      const SizedBox(height: 16),
+                       SizedBox(height: 16.h),
                       CustomButton(
                         namebutton: state is ConfarmLoading
                             ? 'جاري الحجز...'

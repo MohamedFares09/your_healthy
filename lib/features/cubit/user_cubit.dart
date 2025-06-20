@@ -1,10 +1,11 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart'; // إضافة SharedPreferences
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:your_health/core/api/api_consumer.dart';
 import 'package:your_health/core/api/end_points.dart';
-import 'package:your_health/core/error/exceptions.dart';
+
 import 'package:your_health/core/model/login_model.dart';
 import 'package:your_health/features/cubit/user_state.dart';
 
@@ -12,10 +13,6 @@ class UserCubit extends Cubit<UserState> {
   UserCubit(this.api) : super(InitState());
   final ApiConsumer api;
   LoginModel? user;
-
-
- 
-
 
   // تسجيل الدخول
   login() async {
@@ -25,29 +22,21 @@ class UserCubit extends Cubit<UserState> {
         emit(FailuerLogin(errorMessage: 'يرجى إدخال جميع البيانات'));
         return;
       }
-      final response = await api.post(
-        EndPoints.login,
-        data: {
-          'username': emilLogin.text.trim(), // إزالة المسافات الزائدة
-          'password': passwordLogin.text
-        }
-      );
-
-      user = LoginModel.fromJson(response);
-      
- 
-      if (user?.token != null) {
-        await _saveToken(user!.token!);
-        await _saveUserData(user!);
+      final response = await api.post(EndPoints.login, data: {
+        'username': emilLogin.text.trim(), // إزالة المسافات الزائدة
+        'password': passwordLogin.text
+      });
+      // حفظ التوكن بعد تسجيل الدخول
+      final loginModel = LoginModel.fromJson(response);
+      user = loginModel;
+      if (loginModel.token != null) {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('token', loginModel.token!);
       }
-
       emit(SuccessLogin());
-      
-    } on ServerException catch (e) {
-      emit(FailuerLogin(errorMessage: e.errormodel.message ?? 'حدث خطأ في تسجيل الدخول'));
+      _clearLoginFields();
     } catch (e) {
-      emit(FailuerLogin(errorMessage: 'حدث خطأ غير متوقع'));
-      log('Login error: $e');
+      emit(FailuerLogin(errorMessage: "الايميل او كلمه المرور غير صحيحه"));
     }
   }
 
@@ -55,11 +44,10 @@ class UserCubit extends Cubit<UserState> {
   register() async {
     try {
       emit(LodingSignUp());
-      
-      
-      if (nameSignUp.text.isEmpty || 
-          emilSignUp.text.isEmpty || 
-          passwordSignUp.text.isEmpty || 
+
+      if (nameSignUp.text.isEmpty ||
+          emilSignUp.text.isEmpty ||
+          passwordSignUp.text.isEmpty ||
           confirmPassword.text.isEmpty) {
         emit(FailuerSignUp(errorMessage: 'يرجى إدخال جميع البيانات'));
         return;
@@ -71,95 +59,20 @@ class UserCubit extends Cubit<UserState> {
         return;
       }
 
-      final response = await api.post(
-        EndPoints.signUp,
-        isFormData: true,
-        data: {
-          'name': nameSignUp.text.trim(),
-          'email': emilSignUp.text.trim(),
-          'password': passwordSignUp.text,
-          'password_confirmation': confirmPassword.text
-        }
+      final response =
+          await api.post(EndPoints.signUp, isFormData: true, data: {
+        'name': nameSignUp.text.trim(),
+        'email': emilSignUp.text.trim(),
+        'password': passwordSignUp.text,
+        'password_confirmation': confirmPassword.text
+      });
+      emit(
+        SuccessSignUp(),
       );
-
-      log('Sign up response: $response');
-      
-      // التحقق من نجاح التسجيل
-      if (response != null) {
-        // إذا كان الـ API يرجع token مباشرة بعد التسجيل
-        if (response.containsKey('token')) {
-          user = LoginModel.fromJson(response);
-          if (user?.token != null) {
-            await _saveToken(user!.token!);
-            await _saveUserData(user!);
-          }
-        }
-        
-        emit(SuccessSignUp(),);
-
-        _clearSignUpFields();
-      } else {
-        emit(FailuerSignUp(errorMessage: 'فشل في التسجيل'));
-      }
-      
-    } on ServerException catch (e) {
-      emit(FailuerSignUp(errorMessage: e.errormodel.message ?? 'حدث خطأ في التسجيل'));
+      _clearSignUpFields();
     } catch (e) {
       emit(FailuerSignUp(errorMessage: 'حدث خطأ غير متوقع'));
       log('Register error: $e');
-    }
-  }
-
-
-
-  // حفظ الـ token
-  Future<void> _saveToken(String token) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('user_token', token);
-    } catch (e) {
-      log('Error saving token: $e');
-    }
-  }
-
-  // حفظ بيانات المستخدم
-  Future<void> _saveUserData(LoginModel user) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      if (user.userEmail != null) {
-        await prefs.setString('user_email', user.userEmail!);
-      }
-      if (user.userNicename != null) {
-        await prefs.setString('user_name', user.userNicename!);
-      }
-      if (user.userDisplayName != null) {
-        await prefs.setString('user_display_name', user.userDisplayName!);
-      }
-    } catch (e) {
-      log('Error saving user data: $e');
-    }
-  }
-
-  // جلب الـ token المحفوظ
-  Future<String?> getSavedToken() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      return prefs.getString('user_token');
-    } catch (e) {
-      log('Error getting saved token: $e');
-      return null;
-    }
-  }
-
-  // تسجيل الخروج
-  Future<void> logout() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.clear(); 
-      user = null;
-      _clearAllFields();
-    } catch (e) {
-      log('Error during logout: $e');
     }
   }
 
@@ -172,7 +85,7 @@ class UserCubit extends Cubit<UserState> {
   }
 
   // مسح جميع الحقول
-  void _clearAllFields() {
+  void _clearLoginFields() {
     emilLogin.clear();
     passwordLogin.clear();
     _clearSignUpFields();
@@ -182,22 +95,22 @@ class UserCubit extends Cubit<UserState> {
   GlobalKey globalKeyLogin = GlobalKey();
   TextEditingController emilLogin = TextEditingController();
   TextEditingController passwordLogin = TextEditingController();
-  
+
   GlobalKey globalKeySignUp = GlobalKey();
   TextEditingController nameSignUp = TextEditingController();
   TextEditingController emilSignUp = TextEditingController();
   TextEditingController passwordSignUp = TextEditingController();
   TextEditingController confirmPassword = TextEditingController();
 
-  @override
-  Future<void> close() {
-    // تنظيف الـ controllers عند إغلاق الـ Cubit
-    emilLogin.dispose();
-    passwordLogin.dispose();
-    nameSignUp.dispose();
-    emilSignUp.dispose();
-    passwordSignUp.dispose();
-    confirmPassword.dispose();
-    return super.close();
-  }
+  // @override
+  // Future<void> close() {
+  //   // تنظيف الـ controllers عند إغلاق الـ Cubit
+  //   emilLogin.dispose();
+  //   passwordLogin.dispose();
+  //   nameSignUp.dispose();
+  //   emilSignUp.dispose();
+  //   passwordSignUp.dispose();
+  //   confirmPassword.dispose();
+  //   return super.close();
+  // }
 }

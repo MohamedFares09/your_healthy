@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/api/dio_consumer.dart';
 import 'package:your_health/core/model/doctor_model.dart';
 import 'package:your_health/features/Home/widgets/doctor_booking_card_widget.dart';
@@ -42,7 +43,7 @@ class DoctorBookingScreen extends StatelessWidget {
                      
                     ),
 
-                    const SizedBox(height: 16),
+                     SizedBox(height: 16.h),
                   ],
                 ),
               );
