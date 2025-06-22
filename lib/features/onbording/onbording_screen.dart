@@ -18,9 +18,7 @@ class OnbordingScreen extends StatelessWidget {
               height: 30.h,
             ),
             DocLogoAndName(),
-            SizedBox(
-              height: 30.h,
-            ),
+          
             Text(
               ".احجز، تابع، واطمئن… كل شيء في مكان واحد\n صحتك، التطبيق الذي يهتم بك وبمن تحب",
               style: TextStyle(

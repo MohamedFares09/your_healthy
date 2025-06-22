@@ -50,7 +50,11 @@ class _ConfarmScreenState extends State<ConfarmScreen> {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("تم الحجز بنجاح")),
               );
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen()),
+                (Route<dynamic> route) => false,
+              );
             } else if (state is ConfarmError) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.message)),
@@ -111,7 +115,7 @@ class _ConfarmScreenState extends State<ConfarmScreen> {
                           return null;
                         },
                       ),
-                       SizedBox(height: 16.h),
+                      SizedBox(height: 16.h),
                       CustomButton(
                         namebutton: state is ConfarmLoading
                             ? 'جاري الحجز...'
