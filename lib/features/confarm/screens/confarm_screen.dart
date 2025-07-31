@@ -8,6 +8,7 @@ import 'package:your_health/features/cubit/confarm_state.dart';
 import 'package:your_health/core/model/confarm_model.dart';
 import 'package:dio/dio.dart';
 import 'package:your_health/core/api/dio_consumer.dart';
+import 'package:intl/intl.dart';
 
 import '../../Home/screen/home_screen.dart';
 
@@ -122,6 +123,14 @@ class _ConfarmScreenState extends State<ConfarmScreen> {
                             : 'تاكيد الحجز',
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
+                            String formatDateTime(String dateTime) {
+                              try {
+                                final dt = DateTime.parse(dateTime);
+                                return DateFormat('yyyy-MM-dd HH:mm:ss').format(dt);
+                              } catch (e) {
+                                return dateTime;
+                              }
+                            }
                             final model = ConfarmModel(
                               doctorId: widget.doctorId,
                               serviceId: widget.serviceId,
@@ -129,8 +138,8 @@ class _ConfarmScreenState extends State<ConfarmScreen> {
                               lastName: _lastNameController.text,
                               email: _emailController.text,
                               phone: _phoneController.text,
-                              start: widget.start,
-                              end: widget.end,
+                              start: formatDateTime(widget.start),
+                              end: formatDateTime(widget.end),
                             );
                             context.read<ConfarmCubit>().bookAppointment(model);
                           }

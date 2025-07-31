@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:your_health/core/theming/color.dart';
-import 'package:your_health/features/Home/screen/home_screen.dart';
+import 'package:your_health/features/login/ui/login_screen.dart';
+
 
 class SignoutButtonWidget extends StatelessWidget {
   const SignoutButtonWidget({super.key});
@@ -13,7 +14,7 @@ class SignoutButtonWidget extends StatelessWidget {
               backgroundColor: ColorManegaer.kprimarycolor),
           onPressed: () {
             Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                context, MaterialPageRoute(builder: (context) => LoginScreen()));
           },
           child: Text(
             "تسجيل الخروج",

@@ -1,12 +1,9 @@
 import 'dart:developer';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:your_health/core/api/api_consumer.dart';
 import 'package:your_health/core/api/end_points.dart';
-
 import 'package:your_health/core/model/doctor_model.dart';
 import 'package:your_health/features/cubit/doctor_state.dart';
-
 class DoctorCubit extends Cubit<DoctorState> {
   DoctorCubit(this.api) : super(InitDoctor());
 
@@ -27,8 +24,7 @@ class DoctorCubit extends Cubit<DoctorState> {
 
       final List doctorList = response;
       List<DoctorModel> listDoctor =
-          doctorList.map((e) => DoctorModel.fromJson(e)).toList();
-      // s.removeWhere((element) => element.id == -1);
+      doctorList.map((e) => DoctorModel.fromJson(e)).toList();
       emit(SuccessDoctor(doctorList: listDoctor));
     } catch (e, stackTrace) {
       log('Error loading doctors: $e', stackTrace: stackTrace);

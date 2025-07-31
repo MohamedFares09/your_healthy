@@ -10,7 +10,13 @@ class AvailableTimesWidget extends StatefulWidget {
   final List<AvalibleTimeModel> listTime;
   final int doctorId;
   final int serviceId;
-  const AvailableTimesWidget({super.key, required this.listTime, required this.doctorId, required this.serviceId});
+  final String? date;
+  const AvailableTimesWidget(
+      {super.key,
+      required this.listTime,
+      required this.doctorId,
+      required this.serviceId,
+      this.date});
 
   @override
   State<AvailableTimesWidget> createState() => _AvailableTimesWidgetState();
@@ -94,11 +100,17 @@ class _AvailableTimesWidgetState extends State<AvailableTimesWidget> {
                 }
                 final selectedTime = widget.listTime[selectedIndex!];
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  final selectedTime = widget.listTime[selectedIndex!];
+                  String combineDateAndTime(String? date, String time) {
+                    if (date == null) return time;
+                    return "$date ${time.length == 5 ? "$time:00" : time}";
+                  }
+
                   return ConfarmScreen(
                     doctorId: widget.doctorId,
                     serviceId: widget.serviceId,
-                    start: selectedTime.start,
-                    end: selectedTime.end,
+                    start: combineDateAndTime(widget.date, selectedTime.start),
+                    end: combineDateAndTime(widget.date, selectedTime.end),
                   );
                 }));
               },

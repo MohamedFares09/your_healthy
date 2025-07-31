@@ -41,6 +41,7 @@ class AvailableTimesScreen extends StatelessWidget {
                 listTime: state.listTime,
                 doctorId: doctorId,
                 serviceId: int.parse(serviceId),
+                date: date,
               );
             } else if (state is AvalibleTimeFailuerState) {
               return Center(

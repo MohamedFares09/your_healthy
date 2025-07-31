@@ -1,6 +1,4 @@
-class ProfileModel {
-  final String name;
-  final String email;
+class AppointmentModel {
   final String id;
   final String date;
   final String time;
@@ -8,9 +6,7 @@ class ProfileModel {
   final String service;
   final String status;
 
-  ProfileModel({
-    required this.name,
-    required this.email,
+  AppointmentModel({
     required this.id,
     required this.date,
     required this.time,
@@ -19,34 +15,38 @@ class ProfileModel {
     required this.status,
   });
 
+  factory AppointmentModel.fromJson(Map<String, dynamic> json) {
+    return AppointmentModel(
+      id: json['id']?.toString() ?? '',
+      date: json['date'] ?? '',
+      time: json['time'] ?? '',
+      doctor: json['doctor'] ?? '',
+      service: json['service'] ?? '',
+      status: json['status'] ?? '',
+    );
+  }
+}
+
+class ProfileModel {
+  final String name;
+  final String email;
+  final List<AppointmentModel> appointments;
+
+  ProfileModel({
+    required this.name,
+    required this.email,
+    required this.appointments,
+  });
+
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
-    final appointments = json['appointments'];
-    if (appointments != null &&
-        appointments is List &&
-        appointments.isNotEmpty) {
-      final appointment = appointments[0];
-      return ProfileModel(
-        name: json['name'] ?? '',
-        email: json['email'] ?? '',
-        id: appointment['id']?.toString() ?? '',
-        date: appointment['date'] ?? '',
-        time: appointment['time'] ?? '',
-        doctor: appointment['doctor'] ?? '',
-        service: appointment['service'] ?? '',
-        status: appointment['status'] ?? '',
-      );
-    } else {
-      // لا يوجد مواعيد، نعرض فقط بيانات المستخدم الأساسية
-      return ProfileModel(
-        name: json['name'] ?? '',
-        email: json['email'] ?? '',
-        id: '',
-        date: '',
-        time: '',
-        doctor: '',
-        service: '',
-        status: '',
-      );
-    }
+    final appointmentsJson = json['appointments'] as List?;
+    final appointments = appointmentsJson != null
+        ? appointmentsJson.map((e) => AppointmentModel.fromJson(e)).toList()
+        : <AppointmentModel>[];
+    return ProfileModel(
+      name: json['name'] ?? '',
+      email: json['email'] ?? '',
+      appointments: appointments,
+    );
   }
 }

@@ -59,20 +59,40 @@ class UserCubit extends Cubit<UserState> {
         return;
       }
 
-      final response =
-          await api.post(EndPoints.signUp, isFormData: true, data: {
-        'name': nameSignUp.text.trim(),
+      final response = await api.post(EndPoints.signUp, data: {
+        'username': nameSignUp.text.trim(),
         'email': emilSignUp.text.trim(),
         'password': passwordSignUp.text,
-        'password_confirmation': confirmPassword.text
       });
-      emit(
-        SuccessSignUp(),
-      );
-      _clearSignUpFields();
-    } catch (e) {
-      emit(FailuerSignUp(errorMessage: 'حدث خطأ غير متوقع'));
+      log('Register response: $response');
+
+      // تحقق من الاستجابة
+      if (response == null) {
+        emit(FailuerSignUp(errorMessage: 'لم يتم استقبال رد من السيرفر'));
+        return;
+      }
+      // إذا كان السيرفر يرجع مفتاح success أو error أو رسالة نصية
+      if (response is Map) {
+        if (response.containsKey('success') && response['success'] == true) {
+          emit(SuccessSignUp());
+          _clearSignUpFields();
+          return;
+        } else if (response.containsKey('error')) {
+          emit(FailuerSignUp(errorMessage: response['error'].toString()));
+          return;
+        } else if (response.containsKey('message')) {
+          // إذا كان هناك رسالة خطأ
+          emit(FailuerSignUp(errorMessage: response['message'].toString()));
+          return;
+        }
+      }
+      // إذا لم يكن هناك مؤشر واضح للنجاح
+      emit(FailuerSignUp(
+          errorMessage: 'فشل التسجيل، تحقق من البيانات أو حاول لاحقًا'));
+    } catch (e, stack) {
       log('Register error: $e');
+      log('Stack: $stack');
+      emit(FailuerSignUp(errorMessage: 'حدث خطأ غير متوقع'));
     }
   }
 
