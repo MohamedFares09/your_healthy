@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:your_health/core/theming/color.dart';
 import 'package:your_health/core/widgets/app_text_form_field.dart';
 import 'package:your_health/core/widgets/custom_button.dart';
-import 'package:your_health/features/Home/screen/home_screen.dart';
-import 'package:your_health/features/cubit/user_cubit.dart';
-import 'package:your_health/features/cubit/user_state.dart';
+import 'package:your_health/features/Home/view/screens/home_screen.dart';
+import 'package:your_health/features/profile/view_model/user_cubit.dart';
+import 'package:your_health/features/profile/view_model/user_state.dart';
 import 'package:your_health/features/sign_up/ui/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {

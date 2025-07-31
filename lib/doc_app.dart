@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:your_health/core/theming/color.dart';
-import 'package:your_health/features/Home/screen/home_screen.dart';
+import 'package:your_health/features/Home/view/screens/home_screen.dart';
 import 'package:your_health/features/login/ui/login_screen.dart';
 import 'package:your_health/features/onbording/onbording_screen.dart';
 import 'package:your_health/features/sign_up/ui/sign_up_screen.dart';
