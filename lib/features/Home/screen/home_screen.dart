@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
           centerTitle: true,
           title: Text(
             nameAppBar[currentIndex],
-            style: TextStyle(color: Colors.white, fontSize: 13.sp),
+            style: TextStyle(color: Colors.white, fontSize: 22.sp),
           ),
           backgroundColor: ColorManegaer.kprimarycolor,
         ),
